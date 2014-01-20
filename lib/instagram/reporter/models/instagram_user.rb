@@ -1,5 +1,3 @@
-# THIS IS ONLY USED BY THE RAKE TASK FOR AUTOMATING 
-# GATHERING OF POPULAR USERS
 class InstagramUser
   include Mongoid::Document
 
@@ -21,22 +19,6 @@ class InstagramUser
 
   def formated_created_at
     self.created_at.strftime('%d-%m-%Y (%H:%M)')
-  end
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << %w(social_media_profile_name followers_count followers_count_short contact_details about_me created_at) 
-      all.each do |instagram_user|
-        csv << [ instagram_user.username,
-                 instagram_user.followers.to_i * 1000,
-                 instagram_user.followers,
-                 instagram_user.email,
-                 instagram_user.bio,
-                 instagram_user.created_at
-               ]
-
-      end
-    end
   end
 
 end
