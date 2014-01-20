@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Instagram::Reporter::VERSION
   spec.authors       = ["luki3k5" "mpikula"]
   spec.email         = ["luki3k5@gmail.com" "mariusz.pikula@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{This gem allows to easily get data from Instagram}
+  spec.summary       = %q{This gem allows to easily get data from Instagram}
   spec.homepage      = ""
   spec.license       = "MIT"
 
