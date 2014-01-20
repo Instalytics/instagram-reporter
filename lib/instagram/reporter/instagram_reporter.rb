@@ -13,12 +13,18 @@ require 'mongoid'
 
 # MAIN FILES
 require 'instagram_interactions_base'
-require 'instagram_popular_accounts_finder'
+require 'instagram_api_caller'
+require 'instagram_web_caller'
 
 module Instagram
   class InstagramReporter
+
+    def initialize
+      # check me for having the vars setup
+    end
+
     def get_all_popular_instagram_accounts
-      instagram_accounts = InstagramPopularAccountsFinder.new.get_instagram_accounts
+      instagram_accounts = InstagramApiCaller.new.get_instagram_accounts
       #puts
       #puts 'getting new users from instagram'
       #puts
