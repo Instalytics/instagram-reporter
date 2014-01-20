@@ -73,7 +73,6 @@ module InstagramerGetter
     def initialize
       puts "Starting InstagramerGetter!"
       @mongoid_config = Rails.root.join("config", "mongoid.yml").to_s
-      get_old_users_from_csv
 
       conn = Faraday.new(:url => API_BASE_URL ) do |faraday|
         faraday.request  :url_encoded
@@ -96,23 +95,5 @@ module InstagramerGetter
       end
     end
 
-    def get_old_users_from_csv
-      puts "checking oldusers.csv"
-      old_users_csv_file = Rails.root.join("lib", 'oldusers.csv').to_s
-      CSV.foreach(old_users_csv_file) do |csv|
-        print "."
-        if csv[1] != nil || csv[1] != ""
-          i = InstagramUser.create({
-            username: csv[1],
-            email: '',
-            followers:'',
-            bio: '',
-            created_at: DateTime.now.advance(days:-30),
-            updated_at: DateTime.now.advance(days:-30)
-          })
-          puts "Created new user from olduser.csv: #{csv[1]}" if i.valid?
-        end
-      end
-    end
   end
 end
