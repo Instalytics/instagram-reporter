@@ -17,15 +17,10 @@ require 'instagram_api_caller'
 require 'instagram_website_caller'
 require 'instagram_website_scraper'
 
-# MODELS
-require 'models/instagram_user'
-require 'models/instagram_media_file'
-require 'models/instagram_media_file_probe'
-
 #module Instagram
   class InstagramReporter
 
-    attr_accessor :instagram_api_caller, :instagram_website_caller
+    attr_accessor :instagram_api_caller, :instagram_website_caller, :instagram_website_data_parser
 
     def initialize
       @instagram_api_caller          = InstagramApiCaller.new
