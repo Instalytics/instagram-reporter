@@ -12,10 +12,10 @@ require 'open-uri'
 require 'mongoid'
 
 # MAIN FILES
-require 'instagram_interactions_base'
-require 'instagram_api_caller'
-require 'instagram_website_caller'
-require 'instagram_website_scraper'
+require 'instagram-reporter/instagram_interactions_base'
+require 'instagram-reporter/instagram_api_caller'
+require 'instagram-reporter/instagram_website_caller'
+require 'instagram-reporter/instagram_website_scraper'
 
 class InstagramReporter
 
