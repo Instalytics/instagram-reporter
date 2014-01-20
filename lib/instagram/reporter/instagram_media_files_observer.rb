@@ -1,16 +1,3 @@
-require 'rubygems'
-
-require 'faraday'
-require 'faraday_middleware'
-require 'json'
-require 'capybara'
-require 'capybara/dsl'
-require 'csv'
-require 'nokogiri'
-require 'open-uri'
-require 'mongoid'
-require 'mongoid_to_csv'
-
 class InstagramMediaFilesObserver < InstagramInteractionsBase
   RETRIES = 5
 

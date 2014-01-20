@@ -1,17 +1,14 @@
-
 class InstagramWebsiteDataParser
+
   SEARCHABLE_KEYWORDS = %w(contact business Business Facebook facebook fb email Twitter twitter Contact FB tumblr Blog blog mail http www)
+  EMAIL_PATTERN_MATCH = /([^@\s*]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i
 
   def contact_data_email(data)
-    if data.match(/([^@\s*]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i) != nil ? true : false
-      return data.match(/([^@\s*]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i).to_s
-    end
+    _.to_s if data.match(EMAIL_PATTERN_MATCH) != nil ? true : false
   end
 
   def contact_data(data)
-    if data.match(/([^@\s*]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i) != nil ? true : false
-      return data.gsub(',', '')
-    end
+    return data.gsub(',', '') if data.match(EMAIL_PATTERN_MATCH) != nil ? true : false
 
     SEARCHABLE_KEYWORDS.each do |ci|
       return data.gsub(',', '') if data.include?(ci)

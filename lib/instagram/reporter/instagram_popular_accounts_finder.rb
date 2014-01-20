@@ -14,13 +14,6 @@ class InstagramPopularAccountsFinder < InstagramInteractionsBase
       faraday.adapter  Faraday.default_adapter
     end
 
-    #puts
-    #puts 'getting new users from instagram'
-    #puts
-    #data.each do |u|
-    #usr_name = u['user']['username']
-    #NokoParser::Main.new.get_followers_number(usr_name)
-    #end
   end
 
   def get_instagram_accounts
