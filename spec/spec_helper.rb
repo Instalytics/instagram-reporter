@@ -4,9 +4,9 @@ require 'rubygems'
 require 'rspec'
 require 'vcr'
 
-$:.unshift File.expand_path('../../lib', __FILE__)
+$:.unshift File.expand_path('../../lib/instagram/reporter', __FILE__)
 
-require 'instagram-reporter'
+require 'instagram_reporter'
 
 VCR.configure do |c|
   c.configure_rspec_metadata!
