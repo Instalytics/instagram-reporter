@@ -24,21 +24,14 @@ require 'models/instagram_media_file_probe'
 
 module Instagram
   class InstagramReporter
-<<<<<<< HEAD
     
     def intialize
-      if ENV['MONGOHQ_URL'].empty?
+      begin
+        Mongoid.database = Mongo::Connection.new(ENV['MONGOHQ_URL'])
+      rescue => e
+        logger.warn "Unable to create connection to database, will raise exception: #{e}" 
         raise "Please configure database connection URI under MONGOHQ_URL environmental variable"
-      else
-        #check if environmental variables are set for mongoid 
-        connection = Mongo::Connection.new(ENV['MONGOHQ_URL'])
-        MongoConfig.connection = connection
       end
-=======
-
-    def initialize
-      # check me for having the vars setup
->>>>>>> beab8ba2a08f0b7862d67941e30b1c55abfccce6
     end
 
     def get_all_popular_instagram_accounts
