@@ -6,7 +6,7 @@ describe InstagramApiCaller do
 
   describe '#initialize' do
     it 'has proper Faraday connection object' do
-      expect(subject.api_connection).not_to be(nil)
+      expect(subject.api_connection.class).to be(Faraday::Connection)
     end
   end
 

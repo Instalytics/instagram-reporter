@@ -1,6 +1,6 @@
 # encoding: UTF-8
-#
-class InstagramWebCaller < InstagramInteractionsBase
+
+class InstagramWebsiteCaller < InstagramInteractionsBase
   attr_accessor :website_connection
 
   def initialize

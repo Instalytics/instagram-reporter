@@ -14,7 +14,7 @@ require 'mongoid'
 # MAIN FILES
 require 'instagram_interactions_base'
 require 'instagram_api_caller'
-require 'instagram_web_caller'
+require 'instagram_website_caller'
 
 module Instagram
   class InstagramReporter
