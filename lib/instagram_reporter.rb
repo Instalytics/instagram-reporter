@@ -1,4 +1,4 @@
-require "instagram-reporter/version"
+require "instagram_reporter/version"
 require 'rubygems'
 
 # DEPENDENCIES
@@ -12,10 +12,10 @@ require 'open-uri'
 require 'mongoid'
 
 # MAIN FILES
-require 'instagram-reporter/instagram_interactions_base'
-require 'instagram-reporter/instagram_api_caller'
-require 'instagram-reporter/instagram_website_caller'
-require 'instagram-reporter/instagram_website_scraper'
+require 'instagram_reporter/instagram_interactions_base'
+require 'instagram_reporter/instagram_api_caller'
+require 'instagram_reporter/instagram_website_caller'
+require 'instagram_reporter/instagram_website_scraper'
 
 module InstagramReporter
 end
