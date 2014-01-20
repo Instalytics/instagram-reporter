@@ -15,34 +15,43 @@ require 'mongoid'
 require 'instagram_interactions_base'
 require 'instagram_api_caller'
 require 'instagram_website_caller'
-require 'instagram_website_parser'
+require 'instagram_website_scraper'
 
 # MODELS
 require 'models/instagram_user'
 require 'models/instagram_media_file'
 require 'models/instagram_media_file_probe'
 
-module Instagram
+#module Instagram
   class InstagramReporter
-    
-    def intialize
-      begin
-        Mongoid.database = Mongo::Connection.new(ENV['MONGOHQ_URL'])
-      rescue => e
-        logger.warn "Unable to create connection to database, will raise exception: #{e}" 
-        raise "Please configure database connection URI under MONGOHQ_URL environmental variable"
-      end
+
+    attr_accessor :instagram_api_caller, :instagram_website_caller
+
+    def initialize
+      @instagram_api_caller          = InstagramApiCaller.new
+      @instagram_website_caller      = InstagramWebsiteCaller.new
+      @instagram_website_data_parser = InstagramWebsiteScraper.new
     end
 
-    def get_all_popular_instagram_accounts
-      instagram_accounts = InstagramApiCaller.new.get_instagram_accounts
-      #puts
-      #puts 'getting new users from instagram'
-      #puts
-      #instagram_accounts.each do |u|
-      #usr_name = u['user']['username']
-      #InstagramWebsiteParser.new.get_followers_number(usr_name)
-      #end
+    def get_popular_instagram_accounts
+      instagram_api_caller.get_instagram_accounts.each do |u|
+        username     = u['user']['username']
+        profile_page = instagram_website_caller.get_profile_page(username)
+        scraped_data = instagram_website_data_parser.
+        scrape_data_for_profile_page(profile_page)
+
+        i = InstagramUser.create({ # TODO FIXME consider moving this away!
+          username:          scraped_data['username'],
+          email:             scraped_data['contact_data_email'],
+          followers:         scraped_data['counts']['followed_by'].to_i / 1000,
+          bio:               scraped_data['other_contact_means'],
+          created_at:        DateTime.now,
+          updated_at:        DateTime.now,
+          already_presented: false
+        })
+        print "." if i.valid?
+      end
+
     end
   end
-end
+#end

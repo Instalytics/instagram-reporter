@@ -18,5 +18,4 @@ describe InstagramApiCaller do
     end
   end
 
-
 end

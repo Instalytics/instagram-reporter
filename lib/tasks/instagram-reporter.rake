@@ -3,8 +3,8 @@ namespace "instagram-reporter" do
   desc 'get popular instagrammers'
   task :get_popular_instagrammers => :environment do
     #begin
-      require 'popular_instagramers'
-      InstagramerGetter::Main.new
+      require 'instagram_reporter'
+      InstagramReporter.new
     #rescue Exception => e
       #ExceptionNotifier.notify_exception(e)
     #end
