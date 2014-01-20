@@ -4,7 +4,7 @@ require 'rubygems'
 require 'rspec'
 require 'vcr'
 
-$:.unshift File.expand_path('../../lib/instagram/reporter', __FILE__)
+$:.unshift File.expand_path('../../lib/instagram-reporter', __FILE__)
 
 require 'instagram_reporter'
 

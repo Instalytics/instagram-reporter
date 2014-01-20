@@ -1,4 +1,4 @@
-require "instagram/reporter/version"
+require "instagram-reporter/version"
 require 'rubygems'
 
 # DEPENDENCIES
