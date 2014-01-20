@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe InstagramPopularAccountsFinder do
+describe InstagramApiCaller do
 
-  subject { InstagramPopularAccountsFinder.new }
+  subject { InstagramApiCaller.new }
 
   describe '#initialize' do
     it 'has proper Faraday connection object' do
-      expect(subject.connection).not_to be(nil)
+      expect(subject.api_connection.class).to be(Faraday::Connection)
     end
   end
 
@@ -17,4 +17,6 @@ describe InstagramPopularAccountsFinder do
       end
     end
   end
+
+
 end

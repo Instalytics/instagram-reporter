@@ -13,10 +13,12 @@ require 'mongoid'
 
 # MAIN FILES
 require 'instagram_interactions_base'
-require 'instagram_popular_accounts_finder'
+require 'instagram_api_caller'
+require 'instagram_website_caller'
 
 module Instagram
   class InstagramReporter
+<<<<<<< HEAD
     
     def intialize
       if ENV['MONGOHQ_URL'].empty?
@@ -26,10 +28,15 @@ module Instagram
         connection = Mongo::Connection.new(ENV['MONGOHQ_URL'])
         MongoConfig.connection = connection
       end
+=======
+
+    def initialize
+      # check me for having the vars setup
+>>>>>>> beab8ba2a08f0b7862d67941e30b1c55abfccce6
     end
 
     def get_all_popular_instagram_accounts
-      instagram_accounts = InstagramPopularAccountsFinder.new.get_instagram_accounts
+      instagram_accounts = InstagramApiCaller.new.get_instagram_accounts
       #puts
       #puts 'getting new users from instagram'
       #puts
