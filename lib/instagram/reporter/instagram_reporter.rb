@@ -15,6 +15,7 @@ require 'mongoid'
 require 'instagram_interactions_base'
 require 'instagram_api_caller'
 require 'instagram_website_caller'
+require 'instagram_website_parser'
 
 # MODELS
 require 'models/instagram_user'
