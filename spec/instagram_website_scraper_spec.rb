@@ -33,20 +33,24 @@ describe InstagramWebsiteScraper do
     end
   end
 
+  let(:expected_result_from_scraping) do
+    {
+      "username"            => "luki3k5",
+      "bio"                 => "",
+      "website"             => "",
+      "profile_picture"     => "http://images.ak.instagram.com/profiles/anonymousUser.jpg",
+      "full_name"           => "",
+      "counts"              => { "media" => 10, "followed_by" => 4, "follows" => 0 },
+      "id"                  => "4907942",
+      "contact_data_email"  => nil,
+      "other_contact_means" => nil
+    }
+  end
+
   describe '#scrape_data_for_profile_page' do
     it 'gets the data from page' do
-      expected_result = {
-        "username"            => "luki3k5",
-        "bio"                 => "",
-        "website"             => "",
-        "profile_picture"     => "http://images.ak.instagram.com/profiles/anonymousUser.jpg",
-        "full_name"           => "",
-        "counts"              => { "media" => 10, "followed_by" => 4, "follows" => 0 },
-        "id"                  => "4907942",
-        "contact_data_email"  => nil,
-        "other_contact_means" => nil
-      }
-      expect(subject.scrape_data_for_profile_page(luki3k5_web_profile)).to eq(expected_result)
+      expect(subject.scrape_data_for_profile_page(luki3k5_web_profile)).
+        to eq(expected_result_from_scraping)
     end
   end
 end
