@@ -1,6 +1,3 @@
-# This is the 'Probe' meaning we create these in
-# certain intervals to keep track of changes of number comments and likes
-#
 class InstagramMediaFileProbe
   include Mongoid::Document
   include Mongoid::Timestamps

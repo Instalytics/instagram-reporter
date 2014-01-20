@@ -16,6 +16,11 @@ require 'instagram_interactions_base'
 require 'instagram_api_caller'
 require 'instagram_website_caller'
 
+# MODELS
+require 'models/instagram_user'
+require 'models/instagram_media_file'
+require 'models/instagram_media_file_probe'
+
 module Instagram
   class InstagramReporter
 
