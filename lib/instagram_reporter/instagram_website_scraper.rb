@@ -29,7 +29,6 @@ class InstagramWebsiteScraper
           returnee['other_contact_means'] = find_other_contact_means(returnee['bio'])
         end
       rescue
-        puts 'skipping not the right <script> tag'
       end
     end
     returnee
