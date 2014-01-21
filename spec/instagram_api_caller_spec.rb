@@ -4,6 +4,7 @@ describe InstagramApiCaller do
 
   subject { InstagramApiCaller.new }
   let(:test_hashtag) { "inspiredby" }
+  let(:test_media_file_id) { '637637553239091125_432464344' }
 
   describe '#initialize' do
     it 'has proper Faraday connection object' do
@@ -41,4 +42,35 @@ describe InstagramApiCaller do
     end
   end
 
+  describe '#call_api_for_media_file_comments' do
+    it 'returns parsed comments' do
+      VCR.use_cassette('call_api_for_media_file_comments') do
+        response = subject.call_api_for_media_file_comments(test_media_file_id)
+        expect(response.class).to eq(Array)
+      end
+    end
+
+    it 'gives proper count of comments' do
+      VCR.use_cassette('call_api_for_media_file_likes') do
+        response = subject.call_api_for_media_file_comments(test_media_file_id)
+        expect(response.count).to eq(4)
+      end
+    end
+  end
+
+  describe '#call_api_for_media_file_likes' do
+    it 'returns parsed likes' do
+      VCR.use_cassette('call_api_for_media_file_likes') do
+        response = subject.call_api_for_media_file_likes(test_media_file_id)
+        expect(response.class).to eq(Array)
+      end
+    end
+
+    it 'gives proper count of likes' do
+      VCR.use_cassette('call_api_for_media_file_likes') do
+        response = subject.call_api_for_media_file_likes(test_media_file_id)
+        expect(response.count).to eq(120)
+      end
+    end
+  end
 end

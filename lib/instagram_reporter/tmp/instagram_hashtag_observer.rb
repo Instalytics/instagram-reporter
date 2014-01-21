@@ -1,21 +1,3 @@
-class InstagramHashtagObserver < InstagramInteractionsBase
-
-  def initialize
-    puts "Starting InstagramHashtagObserver!"
-    @mongoid_config = Rails.root.join("config", "mongoid.yml").to_s
-
-    @faraday_connection = Faraday.new(url: API_BASE_URL) do |f|
-      f.request  :url_encoded
-      #f.response :logger
-      f.adapter  Faraday.default_adapter
-    end
-  end
-
-  def get_hashtag_info(tag)
-    response = @faraday_connection.get do |req|
-      req.url "/v1/tags/#{tag}/media/recent?client_id=#{TOKENS.shuffle.first}"
-      req.options = { timeout: 15, open_timeout: 15}
-    end
 
     instagram_media_files = []
     JSON.parse(response.body)['data'].each do |el|
@@ -35,5 +17,3 @@ class InstagramHashtagObserver < InstagramInteractionsBase
     end
     puts "InstagramHashtagObserver#get_hashtag_info got #{instagram_media_files.size} new InstagramMediaFiles"
 
-  end
-end

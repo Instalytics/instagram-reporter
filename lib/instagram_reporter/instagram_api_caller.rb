@@ -39,9 +39,35 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
   end
 
+  def count_comments_for_media_file(instagram_media_id)
+    response_body = call_api_for_media_file(instagram_media_id, 'comments')
+    parse_json(response_body).size
+  end
+
+  def call_api_for_media_file_comments(instagram_media_id)
+    call_api_for_media_file(instagram_media_id, 'comments')
+  end
+
+  def call_api_for_media_file_likes(instagram_media_id)
+    call_api_for_media_file(instagram_media_id, 'likes')
+  end
+
 
   private
-  def parse_json(data)
-    Oj.load(data)['data']
-  end
+    def parse_json(data)
+      Oj.load(data)['data']
+    end
+
+    def call_api_for_media_file(media_id, action)
+      response = @api_connection.get do |req|
+        req.url "/v1/media/#{media_id}/#{action}?client_id=#{API_TOKEN}"
+        req.options = DEFAULT_REQUEST_OPTIONS
+      end
+
+      if response.status == 200
+        return parse_json(response.body)
+      else
+        raise 'call for media failed'
+      end
+    end
 end
