@@ -6,4 +6,13 @@ class InstagramInteractionsBase
   API_TOKEN                   = ENV['INSTAGRAM_API_TOKEN']
   POPULAR_INSTAGRAM_MEDIA_URL = '/v1/media/popular'
   DEFAULT_REQUEST_OPTIONS     = {timeout: 15, open_timeout: 15}
+
+  def initialize
+    check_env_variables
+  end
+
+  private
+  def check_env_variables 
+      raise "INSTAGRAM_API_TOKEN environment variable not set" unless API_TOKEN
+  end
 end
