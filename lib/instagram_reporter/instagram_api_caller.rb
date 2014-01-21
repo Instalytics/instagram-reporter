@@ -10,7 +10,6 @@ class InstagramApiCaller < InstagramInteractionsBase
       faraday.use FaradayMiddleware::FollowRedirects
       faraday.adapter  Faraday.default_adapter
     end
-
   end
 
   def get_instagram_accounts
@@ -19,20 +18,21 @@ class InstagramApiCaller < InstagramInteractionsBase
       req.options = DEFAULT_REQUEST_OPTIONS
     end
 
-    JSON.parse(response.body)['data']
+    parse_json(response.body)
+  end
+
+  def get_hashtag_info(tag)
+    response = @faraday_connection.get do |req|
+      req.url "/v1/tags/#{tag}/media/recent?client_id=#{TOKENS.shuffle.first}"
+      req.options = { timeout: 15, open_timeout: 15}
+    end
+
+    parse_json(response.body)
   end
 
 
-
-    #i = InstagramUser.create({
-      #username:          returnee['username'],
-      #email:             contact_data_email(returnee['bio']),
-      #followers:         returnee['counts']['followed_by'].to_i / 1000,
-      #bio:               contact_data(returnee['bio']),
-      #created_at:        DateTime.now,
-      #updated_at:        DateTime.now,
-      #already_presented: false
-    #})
-    #print "." if i.valid?
-
+  private
+    def parse_json(data)
+      Oj.load(data)['data']
+    end
 end

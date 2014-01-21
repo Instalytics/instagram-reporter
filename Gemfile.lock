@@ -5,9 +5,8 @@ PATH
       capybara
       faraday
       faraday_middleware
-      mongoid
-      mongoid_to_csv
       nokogiri
+      oj
       rails (= 3.2.14)
 
 GEM
@@ -66,19 +65,11 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_portile (0.5.2)
-    mongoid (3.1.6)
-      activemodel (~> 3.2)
-      moped (~> 1.4)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.29)
-    mongoid_to_csv (0.4.0)
-      mongoid (>= 2.0.0.rc.7)
-    moped (1.5.1)
     multi_json (1.8.4)
     multipart-post (1.2.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
-    origin (1.1.0)
+    oj (2.5.4)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)

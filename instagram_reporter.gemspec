@@ -23,8 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "capybara"
   spec.add_dependency "nokogiri"
   spec.add_dependency "faraday_middleware"
-  spec.add_dependency "mongoid"
-  spec.add_dependency "mongoid_to_csv"
+  spec.add_dependency "oj"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
