@@ -22,9 +22,9 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   def get_hashtag_info(tag)
-    response = @faraday_connection.get do |req|
-      req.url "/v1/tags/#{tag}/media/recent?client_id=#{TOKENS.shuffle.first}"
-      req.options = { timeout: 15, open_timeout: 15}
+    response = @api_connection.get do |req|
+      req.url "/v1/tags/#{tag}/media/recent?client_id=#{API_TOKEN}"
+      req.options = DEFAULT_REQUEST_OPTIONS
     end
 
     parse_json(response.body)
