@@ -39,11 +39,6 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
   end
 
-  def count_comments_for_media_file(instagram_media_id)
-    response_body = call_api_for_media_file(instagram_media_id, 'comments')
-    parse_json(response_body).size
-  end
-
   def call_api_for_media_file_comments(instagram_media_id)
     call_api_for_media_file(instagram_media_id, 'comments')
   end
