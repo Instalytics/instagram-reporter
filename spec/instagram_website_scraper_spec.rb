@@ -53,4 +53,23 @@ describe InstagramWebsiteScraper do
         to eq(expected_result_from_scraping)
     end
   end
+
+  describe "#get profile page data" do
+    let(:test_profile_name) { "nasa" }
+    it 'returns number of media files' do
+      VCR.use_cassette('get_number_of_media_files') do
+        expect(subject.get_number_of_media_files(luki3k5_web_profile)).to eq("10")
+      end
+    end
+    it 'returns number of followers' do
+      VCR.use_cassette('get_number_of_followers') do
+        expect(subject.get_number_of_followers(luki3k5_web_profile)).to eq("4")
+      end
+    end
+    it 'returns number of followed profiles' do
+      VCR.use_cassette('get_number_of_followed_profiles') do
+        expect(subject.get_number_of_followed_profiles(luki3k5_web_profile)).to eq("0")
+      end
+    end
+  end
 end
