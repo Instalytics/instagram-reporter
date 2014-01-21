@@ -39,8 +39,6 @@ describe InstagramApiCaller do
         expect(response.size).to eq(20)
       end
     end
-
-
   end
 
 end
