@@ -4,6 +4,7 @@ class InstagramWebsiteCaller < InstagramInteractionsBase
   attr_accessor :website_connection
 
   def initialize
+    super
     @website_connection = Faraday.new(url: WEB_BASE_URL) do |faraday|
       faraday.request  :url_encoded
       faraday.use FaradayMiddleware::FollowRedirects
