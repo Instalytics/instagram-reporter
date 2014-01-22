@@ -33,7 +33,6 @@ describe InstagramApiCaller do
 
   describe '#get_instagram_accounts' do
     it 'returns parsed data' do
-      puts "#{InstagramApiCaller::API_TOKEN}"
       VCR.use_cassette('get_instagram_accounts') do
         expect(subject.get_instagram_accounts.class).to eq(Array)
       end
