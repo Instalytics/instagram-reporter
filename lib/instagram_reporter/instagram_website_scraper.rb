@@ -34,39 +34,13 @@ class InstagramWebsiteScraper
     returnee
   end
 
-  def get_number_of_followers(html)
+  def get_profile_statistic(statistic_name,html)
     returnee = nil
     doc = Nokogiri::HTML(html)
     doc.css('script').each do |k|
       begin
         params = eval(k.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
-        returnee = params["followed_by"]
-      rescue
-      end
-    end
-    return returnee.to_s
-  end
-
-  def get_number_of_media_files(html)
-    returnee = nil
-    doc = Nokogiri::HTML(html)
-    doc.css('script').each do |k|
-      begin
-        params = eval(k.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
-        returnee = params["media"]
-      rescue
-      end
-    end
-    return returnee.to_s
-  end
-
-  def get_number_of_followed_profiles(html) 
-    returnee = nil
-    doc = Nokogiri::HTML(html)
-    doc.css('script').each do |k|
-      begin
-        params = eval(k.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
-        returnee = params["follows"]
+        returnee = params[statistic_name]
       rescue
       end
     end
