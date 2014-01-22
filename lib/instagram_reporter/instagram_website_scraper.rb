@@ -34,16 +34,16 @@ class InstagramWebsiteScraper
     returnee
   end
 
-  def get_profile_statistic(statistic_name,html)
+  def get_profile_statistic(attribute_name, html)
     returnee = nil
     doc = Nokogiri::HTML(html)
     doc.css('script').each do |k|
       begin
         params = eval(k.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
-        returnee = params[statistic_name]
+        returnee = params[attribute_name].to_s
       rescue
       end
     end
-    return returnee.to_s
+    returnee
   end
 end
