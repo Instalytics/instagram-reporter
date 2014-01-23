@@ -70,5 +70,12 @@ describe InstagramWebsiteScraper do
         expect(subject.get_profile_statistic("follows",luki3k5_web_profile)).to eq("0")
       end
     end
+
+    it 'returns number of commets and likes for media file with given media_id for given profile' do
+      VCR.use_cassette('get_likes_and_comments') do
+        expect(subject.get_likes_and_comments(luki3k5_web_profile,"107811312_4907942")["likes_count"]).to eq("0")
+        expect(subject.get_likes_and_comments(luki3k5_web_profile,"107811312_4907942")["comments_count"]).to eq("0")
+      end
+    end
   end
 end

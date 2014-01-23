@@ -34,16 +34,28 @@ class InstagramWebsiteScraper
     returnee
   end
 
+  def get_likes_and_comments(html, media_file_id)
+    returnee = nil
+    doc = Nokogiri::HTML(html)
+    likes = doc.content.scan(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/)
+    comments = doc.content.scan(/"comments":\{"count":[0-9]+(?:\.[0-9]*)?/)
+    media_ids = doc.content.scan(/"id":"\d*_\d*"/)
+   
+    media_ids.each_with_index do |media_id, index|
+      if media_id.match(/\d*_\d*/).to_s == media_file_id
+        like = likes[index].match(/\d+/).to_s
+        comment = comments[index].match(/\d+/).to_s  
+        returnee = {"likes_count" => like, "comments_count" => comment}
+      end
+    end
+    returnee 
+  end
+
   def get_profile_statistic(statistic_name,html)
     returnee = nil
     doc = Nokogiri::HTML(html)
-    doc.css('script').each do |k|
-      begin
-        params = eval(k.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
-        returnee = params[statistic_name]
-      rescue
-      end
-    end
+    params = eval(doc.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
+    returnee = params[statistic_name]
     return returnee.to_s
   end
 end
