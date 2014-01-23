@@ -5,15 +5,11 @@ require 'rspec'
 require 'vcr'
 
 $:.unshift File.expand_path('../../lib', __FILE__)
+ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
 
 require 'instagram_reporter'
 
 RSpec.configure do |c|
-  c.before(:all) do
-    unless ENV['INSTAGRAM_API_TOKEN']
-      ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
-    end
-  end
 end
 
 VCR.configure do |c|
@@ -23,10 +19,3 @@ VCR.configure do |c|
   c.default_cassette_options = { :record => :new_episodes }
   c.filter_sensitive_data('<API_TOKEN>') { ENV['INSTAGRAM_API_TOKEN'] }
 end
-
-#Spec::Runner.configure do |config|
-  #config.before(:each) do
-    #ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
-  #end
-#end
-
