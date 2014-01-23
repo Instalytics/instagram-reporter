@@ -8,6 +8,14 @@ $:.unshift File.expand_path('../../lib', __FILE__)
 
 require 'instagram_reporter'
 
+RSpec.configure do |c|
+  c.before(:all) do
+    unless ENV['INSTAGRAM_API_TOKEN']
+      ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
+    end
+  end
+end
+
 VCR.configure do |c|
   c.configure_rspec_metadata!
   c.cassette_library_dir     = 'spec/cassettes'
@@ -16,5 +24,9 @@ VCR.configure do |c|
   c.filter_sensitive_data('<API_TOKEN>') { ENV['INSTAGRAM_API_TOKEN'] }
 end
 
-RSpec.configure do |c|
-end
+#Spec::Runner.configure do |config|
+  #config.before(:each) do
+    #ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
+  #end
+#end
+
