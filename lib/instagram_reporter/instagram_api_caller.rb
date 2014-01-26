@@ -28,11 +28,13 @@ class InstagramApiCaller < InstagramInteractionsBase
 
   def get_hashtag_info(tag)
     begin
+      puts "get_hashtag_info RECEIVED HASHTAG: #{tag}"
       response = @api_connection.get do |req|
         req.url "/v1/tags/#{tag}/media/recent?client_id=#{API_TOKEN}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
+      puts "get_hashtag_info RECEIVED RESPONSE: #{response}"
       return parse_json(response.body)
     rescue Exception => ex
       raise ex
