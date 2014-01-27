@@ -15,4 +15,8 @@ class InstagramWebsiteCaller < InstagramInteractionsBase
   def get_profile_page(account_name)
     @website_connection.get("/#{account_name}").body
   end
+
+  def get_media_file_page(file_code)
+    @website_connection.get("/p/#{file_code}").body
+  end
 end
