@@ -35,7 +35,7 @@ describe InstagramWebsiteScraper do
 
   let(:luki3k5_media_file_page) do
     VCR.use_cassette('get_media_file_page') do
-       InstagramWebsiteCaller.new.get_media_file_page('Fe5iF')
+       InstagramWebsiteCaller.new.get_media_file_page('http://instagram.com/p/Fe5iF')
     end
   end
 
