@@ -21,16 +21,10 @@ class InstagramWebsiteScraper
   def scrape_data_for_profile_page(html)
     returnee = nil
     doc = Nokogiri::HTML(html)
-    doc.css('script').each do |k|
-      begin
-        JSON.parse(k.content.match(/\[{"componentName".*}\]/).to_s).each do |el|
-          returnee = el['props']['user']
-          returnee['contact_data_email']  = contact_data_email(returnee['bio'])
-          returnee['other_contact_means'] = find_other_contact_means(returnee['bio'])
-        end
-      rescue
-      end
-    end
+    el = JSON.parse(doc.content.match(/{"entry_data":{.*}/).to_s)
+    returnee = el['entry_data']['UserProfile'][0]['user']
+    returnee['contact_data_email']  = contact_data_email(returnee['bio'])
+    returnee['other_contact_means'] = find_other_contact_means(returnee['bio'])
     returnee
   end
 

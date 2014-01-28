@@ -19,7 +19,6 @@ class InstagramApiCaller < InstagramInteractionsBase
         req.url "#{POPULAR_INSTAGRAM_MEDIA_URL}?client_id=#{API_TOKEN}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
-
       return parse_json(response.body)
     rescue Exception => ex
       raise ex

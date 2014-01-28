@@ -5,7 +5,7 @@ require 'rspec'
 require 'vcr'
 
 $:.unshift File.expand_path('../../lib', __FILE__)
-ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT'
+ENV['INSTAGRAM_API_TOKEN'] = 'TEST-TOKEN-NOT-RELEVANT' unless ENV['INSTAGRAM_API_TOKEN']
 
 require 'instagram_reporter'
 
