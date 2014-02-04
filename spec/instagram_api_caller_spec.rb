@@ -34,7 +34,7 @@ describe InstagramApiCaller do
 
     it 'returns parsed data' do
       VCR.use_cassette('get_instagram_accounts') do
-        expect(subject.get_instagram_accounts.size).to eq(16)
+        expect(subject.get_instagram_accounts.size).to eq(20)
       end
     end
   end

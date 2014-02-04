@@ -29,14 +29,16 @@ class InstagramWebsiteScraper
   end
 
   def get_likes_and_comments(html)
-    returnee         = nil
+    returnee        = {status: 'online'}
     doc              = Nokogiri::HTML(html)
-    likes            = doc.content.match(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/).to_s
-    likes            = likes.match(/[0-9][0-9]*/).to_s
-    comments_content = "#{doc.content.match(/"comments":{"nodes":\[.*?\]}/).to_s}"
-    comments         = comments_content.scan(/"id":"[0-9]*"/)
-    returnee         = {"likes_count" => likes, "comments_count" => comments.size.to_s}
-    return returnee
+    likes_content    = doc.content.match(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/).to_s
+    likes            = likes_content.match(/[0-9][0-9]*/).to_s
+    comments_content = doc.content.match(/"comments":{"nodes":\[.*?\]}/).to_s
+    comments        = comments_content.scan(/"id":"[0-9]*"/)
+    return nil if likes.nil? || comments.nil?
+    # instagram media file removed
+    returnee.merge!({status: 'offline'}) if !doc.content.match(/Page Not Found/).nil?
+    returnee.merge!({likes_count: likes, comments_count: comments.size.to_s})
   end
 
   def get_profile_statistic(html)
