@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    instagram_reporter (0.0.5)
+    instagram_reporter (0.0.7)
       capybara
       faraday
       faraday_middleware
