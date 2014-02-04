@@ -31,12 +31,12 @@ class InstagramWebsiteScraper
   def get_likes_and_comments(html)
     returnee         = nil
     doc              = Nokogiri::HTML(html)
-    likes            = doc.content.match(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/).to_s
-    likes            = likes.match(/[0-9][0-9]*/).to_s
-    comments_content = "#{doc.content.match(/"comments":{"nodes":\[.*?\]}/).to_s}"
+    likes_content    = doc.content.match(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/).to_s
+    likes            = likes_content.match(/[0-9][0-9]*/)
+    comments_content = doc.content.match(/"comments":{"nodes":\[.*?\]}/).to_s
     comments         = comments_content.scan(/"id":"[0-9]*"/)
+    return nil       if likes.nil? || comments.nil?
     returnee         = {"likes_count" => likes, "comments_count" => comments.size.to_s}
-    return returnee
   end
 
   def get_profile_statistic(html)
