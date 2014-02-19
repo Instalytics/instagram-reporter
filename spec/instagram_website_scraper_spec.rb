@@ -35,7 +35,7 @@ describe InstagramWebsiteScraper do
 
   let(:luki3k5_media_file_page) do
     VCR.use_cassette('get_media_file_page') do
-       InstagramWebsiteCaller.new.get_media_file_page('http://instagram.com/p/Fe5iF')
+       InstagramWebsiteCaller.new.get_media_file_page('http://instagram.com/p/kkfGbfo3kl')
     end
   end
 
@@ -50,9 +50,9 @@ describe InstagramWebsiteScraper do
       "username"            => "luki3k5",
       "bio"                 => "",
       "website"             => "",
-      "profile_picture"     => "http://images.ak.instagram.com/profiles/anonymousUser.jpg",
+      "profile_picture"     => "http://images.ak.instagram.com/profiles/profile_4907942_75sq_1392804574.jpg",
       "full_name"           => "",
-      "counts"              => { "media" => 10, "followed_by" => 5, "follows" => 0 },
+      "counts"              => { "media" => 11, "followed_by" => 8, "follows" => 2 },
       "id"                  => "4907942",
       "contact_data_email"  => nil,
       "other_contact_means" => nil
@@ -69,24 +69,24 @@ describe InstagramWebsiteScraper do
   describe "#get profile page data" do
     it 'returns number of media files' do
       VCR.use_cassette('get_number_of_media_files') do
-        expect(subject.get_profile_statistic(luki3k5_web_profile)["media"].to_s).to eq("10")
+        expect(subject.get_profile_statistic(luki3k5_web_profile)["media"].to_s).to eq("11")
       end
     end
     it 'returns number of followers' do
       VCR.use_cassette('get_number_of_followers') do
-        expect(subject.get_profile_statistic(luki3k5_web_profile)["followed_by"].to_s).to eq("5")
+        expect(subject.get_profile_statistic(luki3k5_web_profile)["followed_by"].to_s).to eq("8")
       end
     end
     it 'returns number of followed profiles' do
       VCR.use_cassette('get_number_of_followed_profiles') do
-        expect(subject.get_profile_statistic(luki3k5_web_profile)["follows"].to_s).to eq("0")
+        expect(subject.get_profile_statistic(luki3k5_web_profile)["follows"].to_s).to eq("2")
       end
     end
 
     it 'returns number of commets and likes for media file with given media_id for given profile' do
       VCR.use_cassette('get_likes_and_comments') do
-        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("1")
-        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:comments_count]).to eq("1")
+        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("2214")
+        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:comments_count]).to eq("20")
       end
     end
 
