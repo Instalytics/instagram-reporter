@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.instagram.com/v1/media/637637553239091125_432464344/likes?client_id=<API_TOKEN>
+    uri: https://api.instagram.com/v1/media/637637553239091125_432464344/comments?access_token=4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 19 Feb 2014 13:56:46 GMT
+      - Wed, 19 Feb 2014 13:56:45 GMT
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Pragma:
@@ -34,14 +34,74 @@ http_interactions:
       - nginx
       Set-Cookie:
       - ccode=PL; Path=/
-      - csrftoken=47848cff01eba4e369e9e399fe340f55; expires=Wed, 18-Feb-2015 13:56:46
+      - csrftoken=dd7fc4b5b2fcf3de46b1f852196273c9; expires=Wed, 18-Feb-2015 13:56:45
         GMT; Max-Age=31449600; Path=/
       Vary:
       - Cookie, Accept-Language, Accept-Encoding
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4706'
+      - '4994'
+      Content-Length:
+      - '518'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"meta\":{\"code\":200},\"data\":[{\"created_time\":\"1390233357\",\"text\":\"And
+        maybe a fitbit\",\"from\":{\"username\":\"tennis_guy23\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_198155720_75sq_1373746773.jpg\",\"id\":\"198155720\",\"full_name\":\"Andrei
+        Is Awesome\"},\"id\":\"637646075452450371\"},{\"created_time\":\"1390235563\",\"text\":\"Haha!!!!!!!!!!
+        @tennis_guy23\",\"from\":{\"username\":\"boeing738\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_339748829_75sq_1392778559.jpg\",\"id\":\"339748829\",\"full_name\":\"HD
+        Plane Pictures\\/Videos\"},\"id\":\"637664582399420018\"},{\"created_time\":\"1390238671\",\"text\":\"Dear
+        @lufthansa i would like to see more \\u2708\\ufe0f pics than guys running.Thanks
+        \\ud83d\\ude18\",\"from\":{\"username\":\"enrique444\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_208517312_75sq_1367005015.jpg\",\"id\":\"208517312\",\"full_name\":\"Ciunea
+        Enrique\"},\"id\":\"637690652825740550\"},{\"created_time\":\"1390249545\",\"text\":\"Nice
+        day \\u2661\",\"from\":{\"username\":\"imankawaii304\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_565159625_75sq_1380330847.jpg\",\"id\":\"565159625\",\"full_name\":\"Iman
+        Kawaii\"},\"id\":\"637781872889553956\"}]}"
+    http_version: 
+  recorded_at: Wed, 19 Feb 2014 13:56:45 GMT
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/media/637637553239091125_432464344/likes?access_token=4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 19 Feb 2014 13:56:47 GMT
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - ccode=PL; Path=/
+      - csrftoken=524ee6b47b68012a57f806181c6ec211; expires=Wed, 18-Feb-2015 13:56:47
+        GMT; Max-Age=31449600; Path=/
+      Vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4993'
       Content-Length:
       - '9452'
       Connection:
@@ -244,5 +304,5 @@ http_interactions:
         \\u041b\\u0430\\u0432\\u0440\\u043e\\u0432\",\"id\":\"432665146\"},{\"username\":\"pepakotlar\",\"bio\":\"\",\"website\":\"\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_300332315_75sq_1390152079.jpg\",\"full_name\":\"pepasipad\",\"id\":\"300332315\"},{\"username\":\"jarededmunds19\",\"bio\":\"Canada!!\",\"website\":\"\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_245866371_75sq_1351809734.jpg\",\"full_name\":\"Jared
         Edmunds\",\"id\":\"245866371\"}]}"
     http_version: 
-  recorded_at: Wed, 19 Feb 2014 13:56:46 GMT
+  recorded_at: Wed, 19 Feb 2014 13:56:47 GMT
 recorded_with: VCR 2.8.0

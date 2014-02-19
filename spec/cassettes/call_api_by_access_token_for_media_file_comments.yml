@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/media/637637553239091125_432464344/comments?access_token=4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 19 Feb 2014 13:56:44 GMT
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - ccode=PL; Path=/
+      - csrftoken=3f0836b8972df08232750e222e4b08b5; expires=Wed, 18-Feb-2015 13:56:44
+        GMT; Max-Age=31449600; Path=/
+      Vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4995'
+      Content-Length:
+      - '518'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"meta\":{\"code\":200},\"data\":[{\"created_time\":\"1390233357\",\"text\":\"And
+        maybe a fitbit\",\"from\":{\"username\":\"tennis_guy23\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_198155720_75sq_1373746773.jpg\",\"id\":\"198155720\",\"full_name\":\"Andrei
+        Is Awesome\"},\"id\":\"637646075452450371\"},{\"created_time\":\"1390235563\",\"text\":\"Haha!!!!!!!!!!
+        @tennis_guy23\",\"from\":{\"username\":\"boeing738\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_339748829_75sq_1392778559.jpg\",\"id\":\"339748829\",\"full_name\":\"HD
+        Plane Pictures\\/Videos\"},\"id\":\"637664582399420018\"},{\"created_time\":\"1390238671\",\"text\":\"Dear
+        @lufthansa i would like to see more \\u2708\\ufe0f pics than guys running.Thanks
+        \\ud83d\\ude18\",\"from\":{\"username\":\"enrique444\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_208517312_75sq_1367005015.jpg\",\"id\":\"208517312\",\"full_name\":\"Ciunea
+        Enrique\"},\"id\":\"637690652825740550\"},{\"created_time\":\"1390249545\",\"text\":\"Nice
+        day \\u2661\",\"from\":{\"username\":\"imankawaii304\",\"profile_picture\":\"http:\\/\\/images.ak.instagram.com\\/profiles\\/profile_565159625_75sq_1380330847.jpg\",\"id\":\"565159625\",\"full_name\":\"Iman
+        Kawaii\"},\"id\":\"637781872889553956\"}]}"
+    http_version: 
+  recorded_at: Wed, 19 Feb 2014 13:56:44 GMT
+recorded_with: VCR 2.8.0
