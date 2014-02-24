@@ -92,7 +92,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       if response.status == 200
         return parse_json(response.body)
       else
-        raise 'call for media failed'
+        raise "call for media failed with response status #{response.status}"
       end
     end
 
@@ -105,7 +105,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       if response.status == 200
         return parse_json(response.body)
       else
-        raise 'call for media failed'
+        raise "call for media #{action} (media_id: #{media_id}) failed with response status #{response.status} and response body #{response.body}"
       end
     end
 end
