@@ -85,7 +85,7 @@ describe InstagramWebsiteScraper do
 
     it 'returns number of commets and likes for media file with given media_id for given profile' do
       VCR.use_cassette('get_likes_and_comments') do
-        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("2214")
+        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("2284")
         expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:comments_count]).to eq("20")
       end
     end

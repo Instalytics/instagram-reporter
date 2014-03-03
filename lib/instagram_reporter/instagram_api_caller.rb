@@ -62,11 +62,11 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
-    call_api_by_access_token_for_media_file(instagram_media_id, access_token, 'comments')
+    call_api_by_access_token_for_media_info(instagram_media_id, access_token, 'comments')
   end
 
   def call_api_by_access_token_for_media_file_likes(instagram_media_id, access_token)
-    call_api_by_access_token_for_media_file(instagram_media_id, access_token, 'likes')
+    call_api_by_access_token_for_media_info(instagram_media_id, access_token, 'likes')
   end
 
   def call_api_by_api_token_for_media_file_comments(instagram_media_id)
@@ -78,32 +78,36 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
 
+
+
   private
     def parse_json(data)
       Oj.load(data)['data']
     end
 
-    def call_api_by_api_token_for_media_file(media_id, action)
+    def call_api_by_access_token_for_media_info(instagram_media_id, access_token , action)
       response = @api_connection.get do |req|
-        req.url "/v1/media/#{media_id}/#{action}?client_id=#{API_TOKEN}"
+        req.url "/v1/media/#{instagram_media_id}?access_token=#{access_token}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
       if response.status == 200
-        return parse_json(response.body)
+        resp_json = parse_json(response.body)
+        return resp_json[action]
       else
-        raise "call for media failed with response status #{response.status}"
+        raise "call for media #{action} (media_id: #{instagram_media_id}) failed with response status #{response.status} and response body #{response.body}"
       end
     end
 
-    def call_api_by_access_token_for_media_file(media_id, access_token, action)
+    def call_api_by_api_token_for_media_file(media_id, action)
       response = @api_connection.get do |req|
-        req.url "/v1/media/#{media_id}/#{action}?access_token=#{access_token}"
+        req.url "/v1/media/#{media_id}?client_id=#{API_TOKEN}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
       if response.status == 200
-        return parse_json(response.body)
+        resp_json = parse_json(response.body)
+        return resp_json[action]
       else
         raise "call for media #{action} (media_id: #{media_id}) failed with response status #{response.status} and response body #{response.body}"
       end
