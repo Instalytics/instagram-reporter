@@ -90,10 +90,11 @@ class InstagramApiCaller < InstagramInteractionsBase
         req.url "/v1/media/#{instagram_media_id}?access_token=#{access_token}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
-
       if response.status == 200
         resp_json = parse_json(response.body)
         return resp_json[action]
+      elsif  response.status == 400 && (response.body.to_s.include? "invalid media id")
+        return nil
       else
         raise "call for media #{action} (media_id: #{instagram_media_id}) failed with response status #{response.status} and response body #{response.body}"
       end

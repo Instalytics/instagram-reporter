@@ -5,6 +5,7 @@ describe InstagramApiCaller do
   subject { InstagramApiCaller.new }
   let(:test_hashtag) { "inspiredby" }
   let(:test_media_file_id) { '653714645670132444_16192269' }
+  let(:non_existent_media_file_id) {'669371381316733323_213058217'}
 
   describe '#initialize' do
     before(:all) do
@@ -115,6 +116,14 @@ describe InstagramApiCaller do
         expect(response['count']).to eq(20)
       end
     end
+
+    it 'returns null if called for likes for non existing media file' do
+      VCR.use_cassette('call_api_by_access_token_for_non_existent_media_file_comments') do
+        response = subject.call_api_by_access_token_for_media_file_comments(non_existent_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
+        expect(response).to be(nil)
+      end
+    end
+
   end
 
   describe '#call_api_by_api_token_for_media_file_likes' do
@@ -145,6 +154,13 @@ describe InstagramApiCaller do
       VCR.use_cassette('call_api_by_access_token_for_media_file_likes') do
         response = subject.call_api_by_access_token_for_media_file_likes(test_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
         expect(response['count']).to eq(4061)
+      end
+    end
+
+    it 'returns null if called for likes for non existing media file' do
+      VCR.use_cassette('call_api_by_access_token_for_non_existent_media_file_likes') do
+        response = subject.call_api_by_access_token_for_media_file_likes(non_existent_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
+        expect(response).to be(nil)
       end
     end
   end
