@@ -21,7 +21,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise ex
+      raise "Failed to obtain instagram accounts by api token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
     end
   end
 
@@ -33,7 +33,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise ex
+      raise "Failed to obtain instagram accounts by access token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
     end
   end
 
@@ -45,7 +45,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise ex
+      raise "Failed to obtain hashtag info by access token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
     end
   end
 
@@ -57,7 +57,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise ex
+      raise "Failed to obtain hashtag info by api token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
     end
   end
 
