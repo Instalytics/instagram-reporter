@@ -43,7 +43,13 @@ class InstagramWebsiteScraper
 
   def get_profile_statistic(html)
     doc = Nokogiri::HTML(html)
-    returnee = eval(doc.content.match(/{"media":.*\d}/).to_s.gsub(":","=>"))
+    doc_match = doc.content.match(/{"media":.*\d}/)  
+    if doc_match.nil?
+      error_message = doc.css("div[class=error-container]").text
+      error_header  = doc.css('title').text
+      raise "Did not get profile page with statistics. Obtained #{error_header} page with #{error_message} content"
+    end
+    returnee  = eval(doc_match.to_s.gsub(":","=>"))
     return returnee
   end
 end

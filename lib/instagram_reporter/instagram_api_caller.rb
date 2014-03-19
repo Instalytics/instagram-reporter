@@ -21,7 +21,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise "Failed to obtain instagram accounts by api token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
+      raise "Failed to obtain instagram accounts by api token wit exception #{ex.inspect} for response #{response.inspect}"
     end
   end
 
@@ -33,7 +33,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise "Failed to obtain instagram accounts by access token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
+      raise "Failed to obtain instagram accounts by access token with exception #{ex.inspect} for response #{response.inspect}"
     end
   end
 
@@ -45,7 +45,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise "Failed to obtain hashtag info by access token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
+      raise "Failed to obtain hashtag info by access token for tag #{tag} with exception #{ex.inspect} for response #{response.inspect} "
     end
   end
 
@@ -57,7 +57,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       return parse_json(response.body)
     rescue Exception => ex
-      raise "Failed to obtain hashtag info by api token wit exception #{ex.inspect} for response status #{response.status} and response body #{response.body} "
+      raise "Failed to obtain hashtag info by api token for tag #{tag} with exception #{ex.inspect} for response #{response.inspect}"
     end
   end
 
@@ -77,9 +77,6 @@ class InstagramApiCaller < InstagramInteractionsBase
     call_api_by_api_token_for_media_file(instagram_media_id, 'likes')
   end
 
-
-
-
   private
     def parse_json(data)
       Oj.load(data)['data']
@@ -96,7 +93,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       elsif  response.status == 400 && (response.body.to_s.include? "invalid media id")
         return nil
       else
-        raise "call for media #{action} (media_id: #{instagram_media_id}) failed with response status #{response.status} and response body #{response.body}"
+        raise "call for media #{action} (media_id: #{instagram_media_id}) failed with response #{response.inspect}"
       end
     end
 
@@ -110,7 +107,7 @@ class InstagramApiCaller < InstagramInteractionsBase
         resp_json = parse_json(response.body)
         return resp_json[action]
       else
-        raise "call for media #{action} (media_id: #{media_id}) failed with response status #{response.status} and response body #{response.body}"
+        raise "call for media #{action} (media_id: #{media_id}) failed with response #{response.inspect}"
       end
     end
 end
