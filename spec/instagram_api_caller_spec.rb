@@ -97,7 +97,7 @@ describe InstagramApiCaller do
     it 'gives proper count of comments' do
       VCR.use_cassette('call_api_by_api_token_for_media_file_likes') do
         response = subject.call_api_by_api_token_for_media_file_comments(test_media_file_id)
-        expect(response['count']).to eq(20)
+        expect(response['count']).to eq(23)
       end
     end
   end
@@ -113,13 +113,21 @@ describe InstagramApiCaller do
     it 'gives proper count of comments' do
       VCR.use_cassette('call_api_by_access_token_for_media_file_likes') do
         response = subject.call_api_by_access_token_for_media_file_comments(test_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
-        expect(response['count']).to eq(20)
+        expect(response['count']).to eq(23)
       end
     end
 
-    it 'returns null if called for likes for non existing media file' do
+    it 'returns nil if called for comments for non existing media file' do
       VCR.use_cassette('call_api_by_access_token_for_non_existent_media_file_comments') do
+        expected_result = {result: 'error', body: {"meta" => {"error_type" => "APINotFoundError","code" => 400,"error_message" => "invalid media id"}}}
         response = subject.call_api_by_access_token_for_media_file_comments(non_existent_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
+        expect(response).to eq(expected_result)
+      end
+    end
+
+    xit 'returns nil if called for comments using invalid access_token' do
+      VCR.use_cassette('call_api_by_non_existing_access_token_for_media_file_comments') do
+        response = subject.call_api_by_access_token_for_media_file_comments(test_media_file_id,'16192269.terefere.5132ead0890d4650a196c1f33f8d0748')
         expect(response).to be(nil)
       end
     end
@@ -137,7 +145,7 @@ describe InstagramApiCaller do
     it 'gives proper count of likes' do
       VCR.use_cassette('call_api_for_media_file_likes') do
         response = subject.call_api_by_api_token_for_media_file_likes(test_media_file_id)
-        expect(response['count']).to eq(4061)
+        expect(response['count']).to eq(4067)
       end
     end
   end
@@ -153,15 +161,24 @@ describe InstagramApiCaller do
     it 'gives proper count of likes' do
       VCR.use_cassette('call_api_by_access_token_for_media_file_likes') do
         response = subject.call_api_by_access_token_for_media_file_likes(test_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
-        expect(response['count']).to eq(4061)
+        expect(response['count']).to eq(4067)
       end
     end
 
-    it 'returns null if called for likes for non existing media file' do
+    it 'returns nil if called for likes for non existing media file' do
       VCR.use_cassette('call_api_by_access_token_for_non_existent_media_file_likes') do
+        expected_result = {result: 'error', body: {"meta" => {"error_type" => "APINotFoundError","code" => 400,"error_message" => "invalid media id"}}}
         response = subject.call_api_by_access_token_for_media_file_likes(non_existent_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
+        expect(response).to eq(expected_result)
+      end
+    end
+
+    xit 'returns nil if called for likes with invalid access token' do
+      VCR.use_cassette('call_api_by_non_existing_access_token_for_media_file_likes') do
+        response = subject.call_api_by_access_token_for_media_file_likes(test_media_file_id,'16192269.terefere.5132ead0890d4650a196c1f33f8d0748')
         expect(response).to be(nil)
       end
     end
+
   end
 end

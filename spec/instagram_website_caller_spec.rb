@@ -14,7 +14,6 @@ describe InstagramWebsiteCaller do
 
     it "should raise error if environmental variable INSTAGRAM_API_TOKEN is not set on class initialization" do
       InstagramInteractionsBase::API_TOKEN = nil
-      puts "shoud rise exception: #{InstagramWebsiteCaller::API_TOKEN.to_s}"
       expect{InstagramWebsiteCaller.new}.to raise_error(RuntimeError, 'INSTAGRAM_API_TOKEN environment variable not set')
     end
     

@@ -29,16 +29,16 @@ class InstagramWebsiteScraper
   end
 
   def get_likes_and_comments(html)
-    returnee        = {status: 'online'}
+    returnee         = {status: 'online'}
     doc              = Nokogiri::HTML(html)
     likes_content    = doc.content.match(/"likes":\{"count":[0-9]+(?:\.[0-9]*)?/).to_s
     likes            = likes_content.match(/[0-9][0-9]*/).to_s
     comments_content = doc.content.match(/"comments":{"nodes":\[.*?\]}/).to_s
-    comments        = comments_content.scan(/"id":"[0-9]*"/)
-    return nil if likes.nil? || comments.nil?
+    comments         = comments_content.scan(/"id":"[0-9]*"/)
+    return {result: 'error', body: 'could not scrape web page for likes and comments'} if likes.nil? || comments.nil?
     # instagram media file removed
-    returnee.merge!({status: 'offline'}) if !doc.content.match(/Page Not Found/).nil?
-    returnee.merge!({likes_count: likes, comments_count: comments.size.to_s})
+    returnee.merge!({status: 'offline',result: 'error', body:'Page not found for media file'}) if !doc.content.match(/Page Not Found/).nil?
+    returnee.merge!({result: 'ok', likes_count: likes, comments_count: comments.size.to_s})
   end
 
   def get_profile_statistic(html)
@@ -47,9 +47,9 @@ class InstagramWebsiteScraper
     if doc_match.nil?
       error_message = doc.css("div[class=error-container]").text
       error_header  = doc.css('title').text
-      raise "Did not get profile page with statistics. Obtained #{error_header} page with #{error_message} content"
+      return {result: 'error', body: 'Did not get profile page with statistics. Obtained #{error_header} page with #{error_message} content'}
     end
     returnee  = eval(doc_match.to_s.gsub(":","=>"))
-    return returnee
+    return returnee.merge!({result: 'ok'})
   end
 end
