@@ -47,7 +47,7 @@ class InstagramWebsiteScraper
     if doc_match.nil?
       error_message = doc.css("div[class=error-container]").text
       error_header  = doc.css('title').text
-      return {result: 'error', body: 'Did not get profile page with statistics. Obtained #{error_header} page with #{error_message} content'}
+      return {result: 'error', body: "Did not get profile page with statistics. Obtained response page \n #{error_header} \n with \n #{error_message} \n content"}
     end
     returnee  = eval(doc_match.to_s.gsub(":","=>"))
     return returnee.merge!({result: 'ok'})
