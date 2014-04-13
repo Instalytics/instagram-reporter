@@ -88,8 +88,8 @@ class InstagramApiCaller < InstagramInteractionsBase
         req.options = DEFAULT_REQUEST_OPTIONS
       end
       if response.status == 200
-        resp_json = {result: 'ok'}.merge(parse_json(response.body))
-        return resp_json[action]
+        resp_json = parse_json(response.body)
+        return {result: 'ok'}.merge(resp_json[action])
       elsif  response.status == 400
         return {result: 'error', body: Oj.load(response.body)}
       else
@@ -104,7 +104,7 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       if response.status == 200
         resp_json = parse_json(response.body)
-        return resp_json[action]
+        return {result: 'ok'}.merge(resp_json[action])
       elsif  response.status == 400
         return {result: 'error', body: Oj.load(response.body)}
       else
