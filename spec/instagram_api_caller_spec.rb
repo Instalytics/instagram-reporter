@@ -12,10 +12,6 @@ describe InstagramApiCaller do
       @current_token = InstagramInteractionsBase::API_TOKEN
     end
 
-    it 'has proper Faraday connection object' do
-      expect(subject.api_connection.class).to be(Faraday::Connection)
-    end
-
     it "should raise error if environmental variable INSTAGRAM_API_TOKEN is not set on class initialization" do
       InstagramInteractionsBase::API_TOKEN = nil
       expect { InstagramApiCaller.new }.to raise_error(ArgumentError, 'INSTAGRAM_API_TOKEN environment variable not set')
