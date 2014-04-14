@@ -2,8 +2,6 @@
 
 class InstagramApiCaller < InstagramInteractionsBase
 
-  attr_accessor :api_connection
-
   def initialize
     super
     @api_connection = Faraday.new(url: API_BASE_URL) do |faraday|
@@ -15,11 +13,7 @@ class InstagramApiCaller < InstagramInteractionsBase
 
   def get_instagram_accounts_by_api_token
     begin
-      response = @api_connection.get do |req|
-        req.url "#{POPULAR_INSTAGRAM_MEDIA_URL}?client_id=#{API_TOKEN}"
-        req.options = DEFAULT_REQUEST_OPTIONS
-      end
-      return parse_json(response.body)
+      instagram_api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL)
     rescue Exception => ex
       raise ex, "Failed to obtain instagram accounts by api token wit exception #{ex.inspect} for response #{response.inspect}"
     end
@@ -27,23 +21,15 @@ class InstagramApiCaller < InstagramInteractionsBase
 
   def get_instagram_accounts_by_access_token(access_token) 
     begin
-      response = @api_connection.get do |req|
-        req.url "#{POPULAR_INSTAGRAM_MEDIA_URL}?access_token=#{access_token}"
-        req.options = DEFAULT_REQUEST_OPTIONS
-      end
-      return parse_json(response.body)
+      instagram_api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL, access_token)
     rescue Exception => ex
       raise ex, "Failed to obtain instagram accounts by access token with exception #{ex.inspect} for response #{response.inspect}"
     end
   end
 
-  def get_hashtag_info_by_access_token(tag,access_token)
+  def get_hashtag_info_by_access_token(tag, access_token)
     begin
-      response = @api_connection.get do |req|
-        req.url "/v1/tags/#{tag}/media/recent?access_token=#{access_token}"
-        req.options = DEFAULT_REQUEST_OPTIONS
-      end
-      return parse_json(response.body)
+      instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", access_token)
     rescue Exception => ex
       raise "Failed to obtain hashtag info by access token for tag #{tag} with exception #{ex.inspect} for response #{response.inspect} "
     end
@@ -51,11 +37,7 @@ class InstagramApiCaller < InstagramInteractionsBase
 
   def get_hashtag_info_by_api_token(tag)
     begin
-      response = @api_connection.get do |req|
-        req.url "/v1/tags/#{tag}/media/recent?client_id=#{API_TOKEN}"
-        req.options = DEFAULT_REQUEST_OPTIONS
-      end
-      return parse_json(response.body)
+      instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent")
     rescue Exception => ex
       raise "Failed to obtain hashtag info by api token for tag #{tag} with exception #{ex.inspect} for response #{response.inspect}"
     end
@@ -78,8 +60,22 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   private
+    attr_reader :api_connection
+
     def parse_json(data)
       Oj.load(data)['data']
+    end
+
+    def instagram_api_get_and_parse(url, access_token = nil)
+      response = api_connection.get do |req|
+        req.url "#{url}?#{query_params(access_token)}"
+        req.options = DEFAULT_REQUEST_OPTIONS
+      end
+      parse_json(response.body)
+    end
+
+    def query_params(access_token)
+      access_token ? "access_token=#{access_token}"  : "client_id=#{API_TOKEN}"
     end
 
     def call_api_by_access_token_for_media_info(instagram_media_id, access_token , action)
