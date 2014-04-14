@@ -62,15 +62,15 @@ class InstagramApiCaller < InstagramInteractionsBase
       case response.status
       when 200
         parse_json(response.body)
-      when 404, 500, 502, 503, 504
+      when 400, 404, 500, 502, 503, 504
         {
           result: 'error',
           body: response.body,
           status: response.status
         }
+      else
+        raise "unsupported response status: #{response.status}. response body : #{response.body} "
       end
-    rescue Exception => ex
-      raise ex, "Failed to obtain instagram data for url #{url} #{ex.inspect}. response body is : #{response.inspect}"
     end
 
     def query_params(access_token)
