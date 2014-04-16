@@ -63,6 +63,7 @@ class InstagramApiCaller < InstagramInteractionsBase
 
       response['data']       = parse_response(api_response, uri)
       response['pagination'] = get_pagination(api_response.body) if get_pagination
+      response['result']     = 'ok'
       return response
     end
 
