@@ -51,24 +51,22 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def get_pagination(data)
-      #puts "#{data.inspect}"
       Oj.load(data)['pagination']
     end
 
-    def instagram_api_get_and_parse(url, access_token = nil, get_pagination = false)
+    def instagram_api_get_and_parse(uri, access_token = nil, get_pagination = false)
       response = Hash.new
       api_response = api_connection.get do |req|
-        req.url "#{url}?#{query_params(access_token)}"
+        req.url "#{uri}?#{query_params(access_token)}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
-      response['data']       = parse_response(api_response)
+      response['data']       = parse_response(api_response, uri)
       response['pagination'] = get_pagination(api_response.body) if get_pagination
-      #puts "#{response}"
       return response
     end
 
-    def parse_response(response)
+    def parse_response(response, uri)
       case response.status
       when 200
         parse_json(response.body)
@@ -76,10 +74,11 @@ class InstagramApiCaller < InstagramInteractionsBase
         {
           result: 'error',
           body: response.body,
-          status: response.status
+          status: response.status,
+          url: uri
         }
       else
-        raise "unsupported response status: #{response.status}. response body : #{response.body} "
+        raise "unsupported response status during GET #{uri}: #{response.status}. response body : #{response.body} "
       end
     end
 
