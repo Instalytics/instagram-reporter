@@ -25,13 +25,13 @@ describe InstagramApiCaller do
   describe '#get_instagram_accounts_by_api_token' do
     it 'returns parsed data' do
       VCR.use_cassette('get_instagram_accounts_by_api_token') do
-        expect(subject.get_instagram_accounts_by_api_token.class).to eq(Array)
+        expect(subject.get_instagram_accounts_by_api_token['data'].class).to eq(Array)
       end
     end
 
     it 'returns parsed data' do
       VCR.use_cassette('get_instagram_accounts_by_api_token') do
-        expect(subject.get_instagram_accounts_by_api_token.size).to eq(20)
+        expect(subject.get_instagram_accounts_by_api_token['data'].size).to eq(20)
       end
     end
   end
@@ -39,13 +39,13 @@ describe InstagramApiCaller do
   describe '#get_instagram_accounts_by_access_token' do
     it 'returns parsed data' do
       VCR.use_cassette('get_instagram_accounts_by_access_token') do
-        expect(subject.get_instagram_accounts_by_access_token('4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe').class).to eq(Array)
+        expect(subject.get_instagram_accounts_by_access_token('4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe')['data'].class).to eq(Array)
       end
     end
 
     it 'returns parsed data' do
       VCR.use_cassette('get_instagram_accounts_by_access_token') do
-        expect(subject.get_instagram_accounts_by_access_token('4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe').size).to eq(20)
+        expect(subject.get_instagram_accounts_by_access_token('4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe')['data'].size).to eq(20)
       end
     end
   end
@@ -54,14 +54,14 @@ describe InstagramApiCaller do
     it 'returns parsed data' do
       VCR.use_cassette('get_hashtag_info_by_api_token') do
         response = subject.get_hashtag_info_by_api_token(test_hashtag)
-        expect(response.class).to eq(Array)
+        expect(response['data'].class).to eq(Array)
       end
     end
 
     it 'returns 20 media files infos inside' do
       VCR.use_cassette('get_hashtag_info_by_api_token') do
         response = subject.get_hashtag_info_by_api_token(test_hashtag)
-        expect(response.size).to eq(20)
+        expect(response['data'].size).to eq(20)
       end
     end
   end
@@ -70,14 +70,14 @@ describe InstagramApiCaller do
     it 'returns parsed data' do
       VCR.use_cassette('get_hashtag_info_by_access_token') do
         response = subject.get_hashtag_info_by_access_token(test_hashtag,'4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe')
-        expect(response.class).to eq(Array)
+        expect(response['data'].class).to eq(Array)
       end
     end
 
     it 'returns 20 media files infos inside' do
       VCR.use_cassette('get_hashtag_info_by_access_token') do
         response = subject.get_hashtag_info_by_access_token(test_hashtag,'4907942.01a3945.d24a9419c2794fc987b60dcab98e22fe')
-        expect(response.size).to eq(20)
+        expect(response['data'].size).to eq(20)
       end
     end
   end

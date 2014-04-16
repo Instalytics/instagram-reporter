@@ -20,11 +20,11 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   def get_hashtag_info_by_access_token(tag, access_token)
-    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", access_token)
+    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", access_token, true)
   end
 
-  def get_hashtag_info_by_api_token(tag)
-    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent")
+  def get_hashtag_info_by_api_token(tag, min_id = nil)
+    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", nil, true)
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
@@ -50,12 +50,22 @@ class InstagramApiCaller < InstagramInteractionsBase
       Oj.load(data)['data']
     end
 
-    def instagram_api_get_and_parse(url, access_token = nil)
-      response = api_connection.get do |req|
+    def get_pagination(data)
+      #puts "#{data.inspect}"
+      Oj.load(data)['pagination']
+    end
+
+    def instagram_api_get_and_parse(url, access_token = nil, get_pagination = false)
+      response = Hash.new
+      api_response = api_connection.get do |req|
         req.url "#{url}?#{query_params(access_token)}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
-      parse_response(response)
+
+      response['data']       = parse_response(api_response)
+      response['pagination'] = get_pagination(api_response.body) if get_pagination
+      #puts "#{response}"
+      return response
     end
 
     def parse_response(response)
