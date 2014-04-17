@@ -21,17 +21,13 @@ class InstagramApiCaller < InstagramInteractionsBase
 
   def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
     uri = "/v1/tags/#{tag}/media/recent"
-    if !min_id.nil?
-      uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
-    end
+    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}" if !min_id.nil?
     instagram_api_get_and_parse(uri, access_token, !min_id.nil?)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
     uri = "/v1/tags/#{tag}/media/recent"
-    if !min_id.nil?
-      uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
-    end
+    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}" if !min_id.nil?
     instagram_api_get_and_parse(uri, nil, !min_id.nil?)
   end
 
@@ -63,10 +59,12 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def instagram_api_get_and_parse(uri, access_token = nil, get_pagination = false)
-      uri=response = Hash.new
-      if get_pagination 
+      response = Hash.new
+      uri = "#{API_BASE_URL}#{uri}?#{query_params(access_token)}"
+      uri = "#{API_BASE_URL}#{uri}&#{query_params(access_token)}" if get_pagination
+      
       api_response = api_connection.get do |req|
-        req.url "#{uri}?#{query_params(access_token)}"
+        req.url "#{uri}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
