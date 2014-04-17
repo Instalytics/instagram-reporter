@@ -19,12 +19,24 @@ class InstagramApiCaller < InstagramInteractionsBase
     instagram_api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL, access_token)
   end
 
-  def get_hashtag_info_by_access_token(tag, access_token)
-    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", access_token, true)
+  def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
+    get_pagination = false
+    uri = "/v1/tags/#{tag}/media/recent"
+    if !min_id.nil?
+      uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
+      get_pagination = true
+    end
+    instagram_api_get_and_parse(uri, access_token, get_pagination)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
-    instagram_api_get_and_parse("/v1/tags/#{tag}/media/recent", nil, true)
+    get_pagination = false
+    uri = "/v1/tags/#{tag}/media/recent"
+    if !min_id.nil?
+      uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
+      get_pagination = true
+    end
+    instagram_api_get_and_parse(uri, nil, get_pagination)
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
@@ -55,7 +67,8 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def instagram_api_get_and_parse(uri, access_token = nil, get_pagination = false)
-      response = Hash.new
+      uri=response = Hash.new
+      if get_pagination 
       api_response = api_connection.get do |req|
         req.url "#{uri}?#{query_params(access_token)}"
         req.options = DEFAULT_REQUEST_OPTIONS
