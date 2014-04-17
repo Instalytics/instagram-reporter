@@ -12,23 +12,25 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   def get_instagram_accounts_by_api_token
-    instagram_api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL)
+    uri = "#{API_BASE_URL}#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(nil)}"
+    instagram_api_get_and_parse(uri)
   end
 
-  def get_instagram_accounts_by_access_token(access_token) 
-    instagram_api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL, access_token)
+  def get_instagram_accounts_by_access_token(access_token)
+    uri = "#{API_BASE_URL}#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(access_token)}"
+    instagram_api_get_and_parse(uri)
   end
 
   def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
-    uri = "/v1/tags/#{tag}/media/recent"
-    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}" if !min_id.nil?
-    instagram_api_get_and_parse(uri, access_token, !min_id.nil?)
+    uri = "#{API_BASE_URL}/v1/tags/#{tag}/media/recent?#{query_params(access_token)}"
+    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(access_token)}" if !min_id.nil?
+    instagram_api_get_and_parse(uri, true)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
-    uri = "/v1/tags/#{tag}/media/recent"
-    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}" if !min_id.nil?
-    instagram_api_get_and_parse(uri, nil, !min_id.nil?)
+    uri = "#{API_BASE_URL}/v1/tags/#{tag}/media/recent?#{query_params(nil)}"
+    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(nil)}" if !min_id.nil?
+    instagram_api_get_and_parse(uri, true)
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
@@ -58,21 +60,25 @@ class InstagramApiCaller < InstagramInteractionsBase
       Oj.load(data)['pagination']
     end
 
-    def instagram_api_get_and_parse(uri, access_token = nil, get_pagination = false)
+    def instagram_api_get_and_parse(uri, get_pagination = false)
       response = Hash.new
-      uri = "#{API_BASE_URL}#{uri}?#{query_params(access_token)}"
-      uri = "#{API_BASE_URL}#{uri}&#{query_params(access_token)}" if get_pagination
-      
+  
       api_response = api_connection.get do |req|
         req.url "#{uri}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
-      response['data']       = parse_response(api_response, uri)
-      response['pagination'] = get_pagination(api_response.body) if get_pagination
-      response['result']     = 'ok'
-      response['status']     = api_response.status
+      if(api_response.status == 200)
+        response['data']       = parse_response(api_response, uri)
+        response['pagination'] = get_pagination(api_response.body) if get_pagination
+        response['result']     = 'ok'
+        response['status']     = api_response.status
+      else
+        response = parse_response(api_response, uri)
+      end
+
       return response
+
     end
 
     def parse_response(response, uri)

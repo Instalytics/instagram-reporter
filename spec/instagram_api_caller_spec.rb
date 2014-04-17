@@ -54,6 +54,16 @@ describe InstagramApiCaller do
     it 'returns parsed data' do
       VCR.use_cassette('get_hashtag_info_by_api_token') do
         response = subject.get_hashtag_info_by_api_token(test_hashtag)
+        #puts "#{response}"
+        expect(response['data'].class).to eq(Array)
+      end
+    end
+    #1395788093935
+
+    it 'returns parsed data with min_id_param' do
+      VCR.use_cassette('get_hashtag_info_by_api_token_with_min_id') do
+        response = subject.get_hashtag_info_by_api_token(test_hashtag, 1395788093935)
+        #puts "#{response}"
         expect(response['data'].class).to eq(Array)
       end
     end

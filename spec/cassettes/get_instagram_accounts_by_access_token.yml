@@ -377,4 +377,54 @@ http_interactions:
         #dektay #\u0e40\u0e14\u0e47\u0e01\u0e40\u0e17\u0e48\u0e2b\u0e4c","from":{"username":"nanarybena","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_14700695_75sq_1381345480.jpg","id":"14700695","full_name":"nanarybena"},"id":"683996264648074209"},"user_has_liked":false,"id":"683996259187090236_14700695","user":{"username":"nanarybena","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_14700695_75sq_1381345480.jpg","full_name":"nanarybena","bio":"","id":"14700695"}}]}'
     http_version: 
   recorded_at: Tue, 25 Mar 2014 16:54:21 GMT
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/media/popular
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: BAD REQUEST
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 17 Apr 2014 11:50:10 GMT
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - ccode=PL; Path=/
+      - csrftoken=143dcb6f4b1a437c1f6ae66cce7ce1aa; expires=Thu, 16-Apr-2015 11:50:10
+        GMT; Max-Age=31449600; Path=/
+      - mid=U0-_8gAEAAHfyLIl7LsTYUF07Q-A; expires=Wed, 12-Apr-2034 11:50:10 GMT; Max-Age=630720000;
+        Path=/
+      Vary:
+      - Cookie, Accept-Language
+      Content-Length:
+      - '127'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"meta":{"error_type":"OAuthParameterException","code":400,"error_message":"Missing
+        client_id or access_token URL parameter."}}'
+    http_version: 
+  recorded_at: Thu, 17 Apr 2014 11:50:08 GMT
 recorded_with: VCR 2.8.0
