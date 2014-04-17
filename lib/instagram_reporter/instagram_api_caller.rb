@@ -20,23 +20,19 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
-    get_pagination = false
     uri = "/v1/tags/#{tag}/media/recent"
     if !min_id.nil?
       uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
-      get_pagination = true
     end
-    instagram_api_get_and_parse(uri, access_token, get_pagination)
+    instagram_api_get_and_parse(uri, access_token, !min_id.nil?)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
-    get_pagination = false
     uri = "/v1/tags/#{tag}/media/recent"
     if !min_id.nil?
       uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}"
-      get_pagination = true
     end
-    instagram_api_get_and_parse(uri, nil, get_pagination)
+    instagram_api_get_and_parse(uri, nil, !min_id.nil?)
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
