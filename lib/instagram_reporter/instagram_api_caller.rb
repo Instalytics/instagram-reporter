@@ -24,7 +24,7 @@ class InstagramApiCaller < InstagramInteractionsBase
     instagram_api_get_and_parse(uri, true)
   end
 
-  def user_recent_media(user_id, access_token)
+  def get_user_recent_media(user_id, access_token)
     uri = "#{API_BASE_URL}/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
     instagram_api_get_and_parse(uri, true)
   end

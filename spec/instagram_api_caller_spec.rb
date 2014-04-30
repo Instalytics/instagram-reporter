@@ -194,7 +194,7 @@ describe InstagramApiCaller do
 
     it "returns a response containing media data with image urls etc" do
       VCR.use_cassette('users_user-id_media_recent') do
-        result = subject.user_recent_media(user_id, access_token)
+        result = subject.get_user_recent_media(user_id, access_token)
         expect(result['data'].first['images']['standard_resolution']['url']).to include('http://')
         expect(result['data'].first['user']['id']).to eq(user_id)
       end
@@ -205,7 +205,7 @@ describe InstagramApiCaller do
 
       it "returns a response containing media data with image urls etc" do
         VCR.use_cassette('users_user-id_media_recent_by_access_token') do
-          result = subject.user_recent_media(user_id, access_token)
+          result = subject.get_user_recent_media(user_id, access_token)
           expect(result['data'].first['images']['standard_resolution']['url']).to include('http://')
           expect(result['data'].first['user']['id']).to eq(user_id)
         end
