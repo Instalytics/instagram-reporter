@@ -3,30 +3,27 @@
 class InstagramApiCaller < InstagramInteractionsBase
 
   def get_instagram_accounts_by_api_token
-    uri = "#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(nil)}"
-    instagram_api_get_and_parse(uri)
+    api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL, query_params(nil))
   end
 
   def get_instagram_accounts_by_access_token(access_token)
-    uri = "#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(access_token)}"
-    instagram_api_get_and_parse(uri)
+    api_get_and_parse(POPULAR_INSTAGRAM_MEDIA_URL, query_params(access_token))
   end
 
   def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
-    uri = "/v1/tags/#{tag}/media/recent?#{query_params(access_token)}"
-    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(access_token)}" if !min_id.nil?
-    instagram_api_get_and_parse(uri, true)
+    params = query_params(access_token)
+    params.merge!(min_id: min_id) unless min_id.nil?
+    api_get_and_parse("/v1/tags/#{tag}/media/recent", params, true)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
-    uri = "/v1/tags/#{tag}/media/recent?#{query_params(nil)}"
-    uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(nil)}" if !min_id.nil?
-    instagram_api_get_and_parse(uri, true)
+    params = query_params(nil)
+    params.merge!(min_id: min_id) unless min_id.nil?
+    api_get_and_parse("/v1/tags/#{tag}/media/recent", params, true)
   end
 
   def get_user_recent_media(user_id, access_token)
-    uri = "/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
-    instagram_api_get_and_parse(uri, true)
+    api_get_and_parse("/v1/users/#{user_id}/media/recent", query_params(access_token), true)
   end
 
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
@@ -55,11 +52,10 @@ class InstagramApiCaller < InstagramInteractionsBase
       Oj.load(data)['pagination']
     end
 
-    def instagram_api_get_and_parse(uri, get_pagination = false)
+    def api_get_and_parse(uri, params, get_pagination = false)
       response = Hash.new
   
-      api_response = api_connection.get do |req|
-        req.url "#{uri}"
+      api_response = api_connection.get(uri, params) do |req|
         req.options = DEFAULT_REQUEST_OPTIONS
       end
 
@@ -93,7 +89,7 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def query_params(access_token)
-      access_token ? "access_token=#{access_token}"  : "client_id=#{API_TOKEN}"
+      access_token ? { access_token: access_token } : { client_id: API_TOKEN }
     end
 
     def call_api_by_access_token_for_media_info(instagram_media_id, access_token , action)
