@@ -2,15 +2,6 @@
 
 class InstagramApiCaller < InstagramInteractionsBase
 
-  def initialize
-    super
-    @api_connection = Faraday.new(url: API_BASE_URL) do |faraday|
-      faraday.request  :url_encoded
-      faraday.use FaradayMiddleware::FollowRedirects
-      faraday.adapter  Faraday.default_adapter
-    end
-  end
-
   def get_instagram_accounts_by_api_token
     uri = "#{API_BASE_URL}#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(nil)}"
     instagram_api_get_and_parse(uri)
@@ -33,6 +24,11 @@ class InstagramApiCaller < InstagramInteractionsBase
     instagram_api_get_and_parse(uri, true)
   end
 
+  def get_user_recent_media(user_id, access_token)
+    uri = "#{API_BASE_URL}/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
+    instagram_api_get_and_parse(uri, true)
+  end
+
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
     call_api_by_access_token_for_media_info(instagram_media_id, access_token, 'comments')
   end
@@ -50,7 +46,6 @@ class InstagramApiCaller < InstagramInteractionsBase
   end
 
   private
-    attr_reader :api_connection
 
     def parse_json(data)
       Oj.load(data)['data']
@@ -102,7 +97,7 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def call_api_by_access_token_for_media_info(instagram_media_id, access_token , action)
-      response = @api_connection.get do |req|
+      response = api_connection.get do |req|
         req.url "/v1/media/#{instagram_media_id}?access_token=#{access_token}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
@@ -117,7 +112,7 @@ class InstagramApiCaller < InstagramInteractionsBase
     end
 
     def call_api_by_api_token_for_media_file(media_id, action)
-      response = @api_connection.get do |req|
+      response = api_connection.get do |req|
         req.url "/v1/media/#{media_id}?client_id=#{API_TOKEN}"
         req.options = DEFAULT_REQUEST_OPTIONS
       end
@@ -128,6 +123,14 @@ class InstagramApiCaller < InstagramInteractionsBase
         return {result: 'error', body: Oj.load(response.body)}
       else
         raise "call for media #{action} (media_id: #{media_id}) failed with response #{response.inspect}"
+      end
+    end
+
+    def api_connection
+      @api_connection ||= Faraday.new(url: API_BASE_URL) do |faraday|
+        faraday.request  :url_encoded
+        faraday.use FaradayMiddleware::FollowRedirects
+        faraday.adapter  Faraday.default_adapter
       end
     end
 end
