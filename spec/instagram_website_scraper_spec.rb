@@ -35,7 +35,7 @@ describe InstagramWebsiteScraper do
 
   let(:non_existent_web_profile) do
     VCR.use_cassette('get_profile_page') do
-      InstagramWebsiteCaller.new.get_profile_page('zxc323')
+      InstagramWebsiteCaller.new.get_profile_page('zxc323terefeere')
     end
   end
 
@@ -58,7 +58,7 @@ describe InstagramWebsiteScraper do
       "website"             => "",
       "profile_picture"     => "http://images.ak.instagram.com/profiles/profile_4907942_75sq_1392804574.jpg",
       "full_name"           => "",
-      "counts"              => { "media" => 12, "followed_by" => 9, "follows" => 4 },
+      "counts"              => { "media" => 13, "followed_by" => 14, "follows" => 4 },
       "id"                  => "4907942",
       "contact_data_email"  => nil,
       "other_contact_means" => nil
@@ -81,12 +81,12 @@ describe InstagramWebsiteScraper do
     
     it 'returns number of media files' do
       VCR.use_cassette('get_number_of_media_files') do
-        expect(subject.get_profile_statistic(luki3k5_web_profile)["media"].to_s).to eq("12")
+        expect(subject.get_profile_statistic(luki3k5_web_profile)["media"].to_s).to eq("13")
       end
     end
     it 'returns number of followers' do
       VCR.use_cassette('get_number_of_followers') do
-        expect(subject.get_profile_statistic(luki3k5_web_profile)["followed_by"].to_s).to eq("9")
+        expect(subject.get_profile_statistic(luki3k5_web_profile)["followed_by"].to_s).to eq("14")
       end
     end
     it 'returns number of followed profiles' do
@@ -97,7 +97,7 @@ describe InstagramWebsiteScraper do
 
     it 'returns number of commets and likes for media file with given media_id for given profile' do
       VCR.use_cassette('get_likes_and_comments') do
-        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("2287")
+        expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:likes_count]).to eq("2284")
         expect(subject.get_likes_and_comments(luki3k5_media_file_page)[:comments_count]).to eq("20")
       end
     end

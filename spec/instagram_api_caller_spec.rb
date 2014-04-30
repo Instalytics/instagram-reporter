@@ -151,7 +151,7 @@ describe InstagramApiCaller do
     it 'gives proper count of likes' do
       VCR.use_cassette('call_api_for_media_file_likes') do
         response = subject.call_api_by_api_token_for_media_file_likes(test_media_file_id)
-        expect(response['count']).to eq(4067)
+        expect(response['count']).to eq(4072)
       end
     end
   end
@@ -167,7 +167,7 @@ describe InstagramApiCaller do
     it 'gives proper count of likes' do
       VCR.use_cassette('call_api_by_access_token_for_media_file_likes') do
         response = subject.call_api_by_access_token_for_media_file_likes(test_media_file_id,'16192269.01a3945.5132ead0890d4650a196c1f33f8d0748')
-        expect(response['count']).to eq(4067)
+        expect(response['count']).to eq(4072)
       end
     end
 

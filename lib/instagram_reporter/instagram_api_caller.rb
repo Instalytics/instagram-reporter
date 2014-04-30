@@ -3,29 +3,29 @@
 class InstagramApiCaller < InstagramInteractionsBase
 
   def get_instagram_accounts_by_api_token
-    uri = "#{API_BASE_URL}#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(nil)}"
+    uri = "#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(nil)}"
     instagram_api_get_and_parse(uri)
   end
 
   def get_instagram_accounts_by_access_token(access_token)
-    uri = "#{API_BASE_URL}#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(access_token)}"
+    uri = "#{POPULAR_INSTAGRAM_MEDIA_URL}?#{query_params(access_token)}"
     instagram_api_get_and_parse(uri)
   end
 
   def get_hashtag_info_by_access_token(tag, access_token, min_id = nil)
-    uri = "#{API_BASE_URL}/v1/tags/#{tag}/media/recent?#{query_params(access_token)}"
+    uri = "/v1/tags/#{tag}/media/recent?#{query_params(access_token)}"
     uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(access_token)}" if !min_id.nil?
     instagram_api_get_and_parse(uri, true)
   end
 
   def get_hashtag_info_by_api_token(tag, min_id = nil)
-    uri = "#{API_BASE_URL}/v1/tags/#{tag}/media/recent?#{query_params(nil)}"
+    uri = "/v1/tags/#{tag}/media/recent?#{query_params(nil)}"
     uri = "/v1/tags/#{tag}/media/recent?min_id=#{min_id}&#{query_params(nil)}" if !min_id.nil?
     instagram_api_get_and_parse(uri, true)
   end
 
   def get_user_recent_media(user_id, access_token)
-    uri = "#{API_BASE_URL}/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
+    uri = "/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
     instagram_api_get_and_parse(uri, true)
   end
 

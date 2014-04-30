@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 30 Apr 2014 09:37:27 GMT
+      - Wed, 30 Apr 2014 12:41:44 GMT
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Pragma:
@@ -34,21 +34,27 @@ http_interactions:
       - nginx
       Set-Cookie:
       - ccode=PL; Path=/
-      - csrftoken=c4b9a53260f841486ce466dd4ec27e61; expires=Wed, 29-Apr-2015 09:37:27
+      - csrftoken=7f0f629925e2eae3cda68ba43479ac80; expires=Wed, 29-Apr-2015 12:41:44
         GMT; Max-Age=31449600; Path=/
       Vary:
       - Cookie, Accept-Language, Accept-Encoding
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4863'
+      - '4853'
       Content-Length:
-      - '3609'
+      - '3778'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"pagination":{"next_url":"https:\/\/api.instagram.com\/v1\/users\/45364550\/media\/recent?max_id=687020714427359071_45364550\u0026client_id=<API_TOKEN>","next_max_id":"687020714427359071_45364550"},"meta":{"code":200},"data":[{"attribution":null,"tags":[],"location":null,"comments":{"count":0,"data":[]},"filter":"Brannan","created_time":"1398537408","link":"http:\/\/instagram.com\/p\/nQ2pyQRxy_\/","likes":{"count":0,"data":[]},"images":{"low_resolution":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_6.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_5.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_8.jpg","width":640,"height":640}},"users_in_photo":[],"caption":null,"type":"image","id":"707305507467500735_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
+      string: '{"pagination":{"next_url":"https:\/\/api.instagram.com\/v1\/users\/45364550\/media\/recent?max_id=691295359271903208_45364550\u0026client_id=<API_TOKEN>","next_max_id":"691295359271903208_45364550"},"meta":{"code":200},"data":[{"attribution":null,"tags":["dobrzanski","krakow","bmw"],"location":{"latitude":50.074532456,"name":"BMW
+        Dobrza\u0144ski","longitude":20.001631799,"id":242336381},"comments":{"count":0,"data":[]},"filter":"Hefe","created_time":"1398853080","link":"http:\/\/instagram.com\/p\/naQv5fxx84\/","likes":{"count":3,"data":[{"username":"lucek_jestem_lubie_cycki","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_3368160_75sq_1364738315.jpg","id":"3368160","full_name":"Lucek"},{"username":"fred_bmw_slash","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_515493170_75sq_1390924048.jpg","id":"515493170","full_name":"Velvet
+        Revolver"},{"username":"kingkhanafer","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_257155679_75sq_1390223078.jpg","id":"257155679","full_name":"Ali
+        Khanafer"}]},"images":{"low_resolution":{"url":"http:\/\/origincache-frc.fbcdn.net\/10269018_1400921900187855_165899858_a.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/origincache-frc.fbcdn.net\/10269018_1400921900187855_165899858_s.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/origincache-frc.fbcdn.net\/10269018_1400921900187855_165899858_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1398853080","text":"#bmw
+        #dobrzanski #krakow","from":{"username":"xiazek","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","id":"45364550","full_name":"Maciej
+        K."},"id":"709953551912607116"},"type":"image","id":"709953551560286008_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
+        K.","bio":"","id":"45364550"}},{"attribution":null,"tags":[],"location":null,"comments":{"count":0,"data":[]},"filter":"Brannan","created_time":"1398537408","link":"http:\/\/instagram.com\/p\/nQ2pyQRxy_\/","likes":{"count":0,"data":[]},"images":{"low_resolution":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_6.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_5.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/distilleryimage8.s3.amazonaws.com\/b7812104cd7111e3ae180002c9dd2a8c_8.jpg","width":640,"height":640}},"users_in_photo":[],"caption":null,"type":"image","id":"707305507467500735_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
         K.","bio":"","id":"45364550"}},{"attribution":null,"tags":["bike","krakow","kmkbike"],"location":null,"comments":{"count":1,"data":[{"created_time":"1398443883","text":"#kmkbike
         #krakow #bike","from":{"username":"xiazek","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","id":"45364550","full_name":"Maciej
         K."},"id":"706520957325877192"}]},"filter":"Amaro","created_time":"1398442657","link":"http:\/\/instagram.com\/p\/nOB7ggxx9k\/","likes":{"count":3,"data":[{"username":"simonx111","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_1026114304_75sq_1390779235.jpg","id":"1026114304","full_name":"Szymon
@@ -114,8 +120,7 @@ http_interactions:
         K."},"id":"691309504671194634"},"type":"image","id":"691309504335650087_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
         K.","bio":"","id":"45364550"}},{"attribution":null,"tags":[],"location":null,"comments":{"count":0,"data":[]},"filter":"Lo-fi","created_time":"1396628850","link":"http:\/\/instagram.com\/p\/mX-Xd0Rx_o\/","likes":{"count":3,"data":[{"username":"pkwiatko","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_52364490_75sq_1336288226.jpg","id":"52364490","full_name":"pkwiatko"},{"username":"ags313","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/anonymousUser.jpg","id":"32530748","full_name":"Andrzej"},{"username":"blazejos","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_1574205_75sq_1364722326.jpg","id":"1574205","full_name":"Blazej
         Marciniak"}]},"images":{"low_resolution":{"url":"http:\/\/origincache-frc.fbcdn.net\/10246033_464822266984729_414133536_a.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/origincache-frc.fbcdn.net\/10246033_464822266984729_414133536_s.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/origincache-frc.fbcdn.net\/10246033_464822266984729_414133536_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":null,"type":"image","id":"691295359271903208_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
-        K.","bio":"","id":"45364550"}},{"attribution":null,"tags":[],"location":null,"comments":{"count":0,"data":[]},"filter":"Lo-fi","created_time":"1396119272","link":"http:\/\/instagram.com\/p\/mIybMkxx9f\/","likes":{"count":0,"data":[]},"images":{"low_resolution":{"url":"http:\/\/distilleryimage1.s3.amazonaws.com\/8e56c34cb77311e38e6212bdd7da67ad_6.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/distilleryimage1.s3.amazonaws.com\/8e56c34cb77311e38e6212bdd7da67ad_5.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/distilleryimage1.s3.amazonaws.com\/8e56c34cb77311e38e6212bdd7da67ad_8.jpg","width":640,"height":640}},"users_in_photo":[],"caption":null,"type":"image","id":"687020714427359071_45364550","user":{"username":"xiazek","website":"","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_45364550_75sq_1378321024.jpg","full_name":"Maciej
         K.","bio":"","id":"45364550"}}]}'
     http_version: 
-  recorded_at: Wed, 30 Apr 2014 09:37:27 GMT
+  recorded_at: Wed, 30 Apr 2014 12:41:43 GMT
 recorded_with: VCR 2.8.0
