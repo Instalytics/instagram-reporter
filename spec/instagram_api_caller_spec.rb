@@ -187,4 +187,29 @@ describe InstagramApiCaller do
     end
 
   end
+
+  describe '#user_recent_media' do
+    let(:user_id) { '45364550' }
+    let(:access_token) { nil }
+
+    it "returns a response containing media data with image urls etc" do
+      VCR.use_cassette('users_user-id_media_recent') do
+        result = subject.user_recent_media(user_id, access_token)
+        expect(result['data'].first['images']['standard_resolution']['url']).to include('http://')
+        expect(result['data'].first['user']['id']).to eq(user_id)
+      end
+    end
+
+    context 'when using access_token' do
+      let(:access_token) { '45364550.1fb234f.568db239a5a845c4ad8315557d551c1c' }
+
+      it "returns a response containing media data with image urls etc" do
+        VCR.use_cassette('users_user-id_media_recent_by_access_token') do
+          result = subject.user_recent_media(user_id, access_token)
+          expect(result['data'].first['images']['standard_resolution']['url']).to include('http://')
+          expect(result['data'].first['user']['id']).to eq(user_id)
+        end
+      end
+    end
+  end
 end

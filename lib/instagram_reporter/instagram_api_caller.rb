@@ -33,6 +33,11 @@ class InstagramApiCaller < InstagramInteractionsBase
     instagram_api_get_and_parse(uri, true)
   end
 
+  def user_recent_media(user_id, access_token)
+    uri = "#{API_BASE_URL}/v1/users/#{user_id}/media/recent?#{query_params(access_token)}"
+    instagram_api_get_and_parse(uri, true)
+  end
+
   def call_api_by_access_token_for_media_file_comments(instagram_media_id,access_token)
     call_api_by_access_token_for_media_info(instagram_media_id, access_token, 'comments')
   end
