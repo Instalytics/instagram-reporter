@@ -6,6 +6,8 @@ describe InstagramApiCaller do
   let(:test_hashtag) { "inspiredby" }
   let(:test_media_file_id) { '653714645670132444_16192269' }
   let(:non_existent_media_file_id) { '669371381316733323_213058217' }
+  let(:access_token) { '622268995.1fb234f.2dddf4bf03bb4e4091af3b2ea32887e4' }
+  let(:user_id) { '45364550' }
 
   describe '#initialize' do
     before(:all) do
@@ -189,7 +191,6 @@ describe InstagramApiCaller do
   end
 
   describe '#get_user_recent_media' do
-    let(:user_id) { '45364550' }
     let(:access_token) { nil }
 
     it "returns a response containing media data with image urls etc" do
@@ -201,7 +202,7 @@ describe InstagramApiCaller do
     end
 
     context 'when using access_token' do
-      let(:access_token) { '45364550.1fb234f.568db239a5a845c4ad8315557d551c1c' }
+      
 
       it "returns a response containing media data with image urls etc" do
         VCR.use_cassette('users_user-id_media_recent_by_access_token') do
@@ -210,6 +211,7 @@ describe InstagramApiCaller do
           expect(result['data'].first['user']['id']).to eq(user_id)
         end
       end
+
     end
   end
 
@@ -226,7 +228,7 @@ describe InstagramApiCaller do
     end
 
     context 'when using access_token' do
-      let(:access_token) { '45364550.1fb234f.568db239a5a845c4ad8315557d551c1c' }
+      #let(:access_token) { '45364550.1fb234f.568db239a5a845c4ad8315557d551c1c' }
 
       it "returns a response containing media data with image urls etc" do
         VCR.use_cassette('users_search_by_access_token') do
@@ -238,4 +240,14 @@ describe InstagramApiCaller do
     end
 
   end
+
+  describe 'get_followers' do
+    it 'returns response containing list of followers' do
+      VCR.use_cassette('user_followers') do
+          result = subject.get_followers(user_id, access_token)
+          #puts "#{result}"
+      end
+    end
+  end
+
 end

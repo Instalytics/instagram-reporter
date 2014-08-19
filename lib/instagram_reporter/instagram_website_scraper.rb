@@ -21,11 +21,14 @@ class InstagramWebsiteScraper
   def scrape_data_for_profile_page(html)
     returnee = nil
     doc = Nokogiri::HTML(html)
-    el = JSON.parse(doc.content.match(/{"entry_data":{.*}/).to_s)
-    returnee = el['entry_data']['UserProfile'][0]['user']
-    returnee['contact_data_email']  = contact_data_email(returnee['bio'])
-    returnee['other_contact_means'] = find_other_contact_means(returnee['bio'])
-    returnee
+    #el = JSON.parse(doc.content.match(/{"entry_data":{.*}/).to_s)
+    prematched_content = doc.content.match(/"prerelease":.*"}/).to_s
+    match_for_profile_data = prematched_content.match(/{.*}/).to_s
+    el = JSON.parse(match_for_profile_data)
+    #returnee = el['entry_data']['UserProfile'][0]['user']
+    el['contact_data_email']  = contact_data_email(el['bio'])
+    el['other_contact_means'] = find_other_contact_means(el['bio'])
+    el
   end
 
   def get_likes_and_comments(html)
@@ -50,8 +53,11 @@ class InstagramWebsiteScraper
       return {result: 'error', body: "Did not get profile page with statistics. Obtained response page \n #{error_header} \n with \n #{error_message} \n content"}
     end
     returnee  = eval(doc_match.to_s.gsub(":","=>"))
-    el = JSON.parse(doc.content.match(/{"entry_data":{.*}/).to_s)
-    result = el['entry_data']['UserProfile'][0]['user']
-    return returnee.merge!({result: 'ok', profile_picture: result['profile_picture']})
+    prematched_content = doc.content.match(/"prerelease":.*"}/).to_s
+    match_for_profile_picture = prematched_content.match(/{.*}/).to_s
+    #el = JSON.parse(doc.content.match(/{"entry_data":{.*}/).to_s)
+    el = JSON.parse(match_for_profile_picture)
+    #result = el['entry_data']['UserProfile'][0]['user']
+    return returnee.merge!({result: 'ok', profile_picture: el['profile_picture']})
   end
 end
