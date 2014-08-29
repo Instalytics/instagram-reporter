@@ -110,6 +110,15 @@ describe InstagramApiCaller do
     end
   end
 
+  describe 'call_api_by_api_token_for_media_file_caption' do
+    it 'returns parsed caption' do
+      VCR.use_cassette('call_api_by_api_token_for_media_file_caption') do
+        response = subject.call_api_by_api_token_for_media_file_caption(test_media_file_id)
+        expect(response.class).to eq(Hash)
+      end
+    end
+  end
+
   describe '#call_api_by_access_token_for_media_file_comments' do
     it 'returns parsed comments' do
       VCR.use_cassette('call_api_by_access_token_for_media_file_comments') do

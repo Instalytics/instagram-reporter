@@ -47,6 +47,10 @@ class InstagramApiCaller < InstagramInteractionsBase
     call_api_by_api_token_for_media_file(instagram_media_id, 'likes')
   end
 
+  def call_api_by_api_token_for_media_file_caption(instagram_media_id)
+    call_api_by_api_token_for_media_file(instagram_media_id, 'caption')
+  end
+
   def get_location(location_id, access_token)
     #https://api.instagram.com/v1/locations/1?access_token=ACCESS-TOKEN
     api_get_and_parse("/v1/locations/#{location_id}", query_params(access_token), false)
