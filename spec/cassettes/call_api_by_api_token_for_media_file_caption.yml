@@ -250,4 +250,67 @@ http_interactions:
         diary by Sylvia","bio":"","id":"165640"}}}'
     http_version: 
   recorded_at: Fri, 29 Aug 2014 08:46:01 GMT
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/media/786891999447937128_269508131?client_id=<API_TOKEN>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 01 Sep 2014 19:42:31 GMT
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - ccode=PL; Path=/
+      - csrftoken=bf449551b38d7084482c1e1488ae43d6; expires=Mon, 31-Aug-2015 19:42:31
+        GMT; Max-Age=31449600; Path=/
+      Vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4849'
+      Content-Length:
+      - '1547'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"meta":{"code":200},"data":{"attribution":null,"tags":[],"location":{"latitude":36.848518847,"name":"Maxx
+        Royal Belek Golf Spa","longitude":31.070505735,"id":221723492},"comments":{"count":78,"data":[{"created_time":"1408199267","text":"Hor","from":{"username":"justin46272","profile_picture":"http:\/\/photos-a.ak.instagram.com\/hphotos-ak-xap1\/10401783_225102187698744_1701356150_a.jpg","id":"1378151973","full_name":"Justin"},"id":"788355053951972109"},{"created_time":"1408199270","text":"Hot","from":{"username":"justin46272","profile_picture":"http:\/\/photos-a.ak.instagram.com\/hphotos-ak-xap1\/10401783_225102187698744_1701356150_a.jpg","id":"1378151973","full_name":"Justin"},"id":"788355074856383249"},{"created_time":"1408301954","text":"@milanademort","from":{"username":"katerynamarchuk","profile_picture":"http:\/\/photos-e.ak.instagram.com\/hphotos-ak-xaf1\/10616436_327424330751028_435634704_a.jpg","id":"228337565","full_name":"\u2022
+        Ukrainian \u2022"},"id":"789216456510337181"},{"created_time":"1408301982","text":"@katerynamarchuk
+        ?","from":{"username":"milanademort","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_144082646_75sq_1394390389.jpg","id":"144082646","full_name":"milanademort"},"id":"789216686920233139"},{"created_time":"1408302775","text":"@milanademort
+        that body","from":{"username":"katerynamarchuk","profile_picture":"http:\/\/photos-e.ak.instagram.com\/hphotos-ak-xaf1\/10616436_327424330751028_435634704_a.jpg","id":"228337565","full_name":"\u2022
+        Ukrainian \u2022"},"id":"789223341552628439"},{"created_time":"1408538837","text":"\u041a\u0440\u0430\u0441\u0438\u0432\u043e
+        !","from":{"username":"china_market_company","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xaf1\/10584670_436850333122102_2079743776_a.jpg","id":"1456291876","full_name":"china_market_company"},"id":"791203568940020611"},{"created_time":"1408745344","text":"\u0627\u062d\u064a\u064a\u0647
+        \u064a\u0627\u0644\u0628\u0649","from":{"username":"alhrbi_2011","profile_picture":"http:\/\/photos-f.ak.instagram.com\/hphotos-ak-xpf1\/10540325_1496754723900805_1388225743_a.jpg","id":"1463398329","full_name":"alhrbi"},"id":"792935881948328178"},{"created_time":"1409133872","text":"Amazing","from":{"username":"verflonika","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xaf1\/10576089_1447130482236430_757729955_a.jpg","id":"183193865","full_name":"Nika"},"id":"796195089066029460"}]},"filter":"Normal","created_time":"1408024857","link":"http:\/\/instagram.com\/p\/rrmhq3sPBo\/","likes":{"count":9124,"data":[{"username":"111ella","profile_picture":"http:\/\/photos-c.ak.instagram.com\/hphotos-ak-xaf1\/10611111_326130934232306_702946424_a.jpg","id":"1015528337","full_name":"Elmira
+        Nabatova"},{"username":"olga_beloedova","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xfp1\/1741699_1428648924075286_1277477169_a.jpg","id":"631654747","full_name":"\u041b\u0451\u043b\u0438\u043a^^"},{"username":"raznie_shtuchki","profile_picture":"http:\/\/photos-h.ak.instagram.com\/hphotos-ak-xpa1\/10520185_886358178059295_683295963_a.jpg","id":"300725518","full_name":"\u0412\u043e\u043b\u0448\u0435\u0431\u043d\u044b\u0435
+        \u0440\u0443\u0447\u043a\u0438"},{"username":"djamik_555","profile_picture":"http:\/\/photos-a.ak.instagram.com\/hphotos-ak-xpf1\/10431809_1487324011485384_1812068785_a.jpg","id":"145425391","full_name":"djamik_555"}]},"images":{"low_resolution":{"url":"http:\/\/scontent-a.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/10598542_1470435643213836_552804320_a.jpg","width":306,"height":306},"thumbnail":{"url":"http:\/\/scontent-a.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/10598542_1470435643213836_552804320_s.jpg","width":150,"height":150},"standard_resolution":{"url":"http:\/\/scontent-a.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/10598542_1470435643213836_552804320_n.jpg","width":640,"height":640}},"users_in_photo":[{"position":{"y":0.9836601,"x":0.2197917},"user":{"username":"fitness_junkie","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_35418860_75sq_1368209811.jpg","id":"35418860","full_name":"Alexa"}},{"position":{"y":0.9836601,"x":0.815625},"user":{"username":"triangl_swimwear","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_2291393_75sq_1367233718.jpg","id":"2291393","full_name":"TRIANGL
+        SWIMWEAR"}},{"position":{"y":0.9836601,"x":0.5028646},"user":{"username":"fitmotivation","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_48410502_75sq_1389359328.jpg","id":"48410502","full_name":"FIT
+        MOTIVATION"}}],"caption":null,"type":"image","id":"786891999447937128_269508131","user":{"username":"demivika","website":"","profile_picture":"http:\/\/photos-b.ak.instagram.com\/hphotos-ak-xfp1\/10362102_415702271905441_1188305093_a.jpg","full_name":"Victoria
+        Demidova","bio":"","id":"269508131"}}}'
+    http_version: 
+  recorded_at: Mon, 01 Sep 2014 19:42:31 GMT
 recorded_with: VCR 2.9.2

@@ -135,6 +135,9 @@ class InstagramApiCaller < InstagramInteractionsBase
       end
       if response.status == 200
         resp_json = parse_json(response.body)
+        if action == 'caption' && resp_json[action].nil?
+          return {result: 'ok', text: nil}
+        end
         return {result: 'ok'}.merge(resp_json[action])
       elsif  response.status == 400
         return {result: 'error', body: Oj.load(response.body)}
